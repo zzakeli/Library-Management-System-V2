@@ -1,9 +1,17 @@
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import Controls.BookListener;
+import Controls.BorrowerListener;
+import Controls.HomeListener;
+import Controls.MemberListener;
+import Controls.SearchListener;
+import Controls.StaffListener;
 import INITIAL.Constants;
 
 public class Sidebar extends JPanel {
@@ -28,6 +36,7 @@ public class Sidebar extends JPanel {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledHome = new ImageIcon(homeScale);
         homeButton.setIcon(scaledHome);
+        homeButton.addMouseListener(new HomeListener());
         add(homeButton);
 
         JLabel searchButton = new JLabel();
@@ -39,6 +48,7 @@ public class Sidebar extends JPanel {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledSearch = new ImageIcon(searchScale);
         searchButton.setIcon(scaledSearch);
+        searchButton.addMouseListener(new SearchListener());
         add(searchButton);
 
         JLabel bookButton = new JLabel();
@@ -50,6 +60,7 @@ public class Sidebar extends JPanel {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledBook = new ImageIcon(bookScale);
         bookButton.setIcon(scaledBook);
+        bookButton.addMouseListener(new BookListener());
         add(bookButton);
 
         JLabel borrowerButton = new JLabel();
@@ -61,6 +72,7 @@ public class Sidebar extends JPanel {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledBorrower = new ImageIcon(borrowerScale);
         borrowerButton.setIcon(scaledBorrower);
+        borrowerButton.addMouseListener(new BorrowerListener());
         add(borrowerButton);
 
         JLabel memberButton = new JLabel();
@@ -72,6 +84,7 @@ public class Sidebar extends JPanel {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledMember = new ImageIcon(memberScale);
         memberButton.setIcon(scaledMember);
+        memberButton.addMouseListener(new MemberListener());
         add(memberButton);
 
         JLabel staffButton = new JLabel();
@@ -83,6 +96,7 @@ public class Sidebar extends JPanel {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledStaff = new ImageIcon(staffScale);
         staffButton.setIcon(scaledStaff);
+        staffButton.addMouseListener(new StaffListener());
         add(staffButton);
 
     }
