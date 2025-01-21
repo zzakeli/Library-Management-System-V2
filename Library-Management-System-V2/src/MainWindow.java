@@ -3,8 +3,7 @@ import INITIAL.Constants;
 
 public class MainWindow extends JFrame {
 
-    Sidebar sidebar = new Sidebar();
-    ShowPanel showPanel = new ShowPanel();
+    Sidebar sidebar = new Sidebar(this);
 
     MainWindow() {
         super(Constants.TITLE);
@@ -14,7 +13,6 @@ public class MainWindow extends JFrame {
         setResizable(false);
         setVisible(true);
         add(sidebar);
-        add(showPanel);
     }
 
 }

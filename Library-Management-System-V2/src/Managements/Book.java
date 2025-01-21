@@ -1,17 +1,24 @@
 package Managements;
 
-import java.awt.Color;
+import java.awt.*;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import INITIAL.Constants;
 
 public class Book extends JPanel {
 
-    Book() {
+    public Book() {
         setBackground(new Color(58, 57, 96));
         setSize(Constants.MAIN_DIMENSIONS[0], Constants.MAIN_DIMENSIONS[1]);
         setLocation(100, 0);
-        setVisible(true);
+        setVisible(false);
+        displayLabel();
+    }
+
+    public void displayLabel() {
+        JLabel label = new JLabel("Book");
+        label.setFont(new Font("Dialog", Font.PLAIN, 50));
+        add(label);
     }
 }
