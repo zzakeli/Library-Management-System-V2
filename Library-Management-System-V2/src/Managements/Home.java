@@ -94,99 +94,99 @@ public class Home extends JPanel {
             JPanel numBorrower, JPanel numStaff) {
 
         JLabel totalBookLabel = new JLabel("Total Books");
-        totalBookLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+        totalBookLabel.setFont(new Font("Dialog", Font.BOLD, Constants.FONT_SIZE_LABEL));
         totalBookLabel.setHorizontalAlignment(SwingConstants.CENTER);
         totalBookLabel.setVerticalAlignment(SwingConstants.CENTER);
-        totalBookLabel.setLocation(25, 40);
-        totalBookLabel.setSize(250, 50);
+        totalBookLabel.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[1]);
+        totalBookLabel.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         totalBook.add(totalBookLabel);
 
         JLabel availBookLabel = new JLabel("Available Books");
-        availBookLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+        availBookLabel.setFont(new Font("Dialog", Font.BOLD, Constants.FONT_SIZE_LABEL));
         availBookLabel.setHorizontalAlignment(SwingConstants.CENTER);
         availBookLabel.setVerticalAlignment(SwingConstants.CENTER);
-        availBookLabel.setLocation(25, 40);
-        availBookLabel.setSize(250, 50);
+        availBookLabel.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[1]);
+        availBookLabel.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         availBook.add(availBookLabel);
 
         JLabel totalPriceLabel = new JLabel("Total Price");
-        totalPriceLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+        totalPriceLabel.setFont(new Font("Dialog", Font.BOLD, Constants.FONT_SIZE_LABEL));
         totalPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
         totalPriceLabel.setVerticalAlignment(SwingConstants.CENTER);
-        totalPriceLabel.setLocation(25, 40);
-        totalPriceLabel.setSize(250, 50);
+        totalPriceLabel.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[1]);
+        totalPriceLabel.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         totalPrice.add(totalPriceLabel);
 
         JLabel numMemberLabel = new JLabel("Members");
-        numMemberLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+        numMemberLabel.setFont(new Font("Dialog", Font.BOLD, Constants.FONT_SIZE_LABEL));
         numMemberLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numMemberLabel.setVerticalAlignment(SwingConstants.CENTER);
-        numMemberLabel.setLocation(25, 40);
-        numMemberLabel.setSize(250, 50);
+        numMemberLabel.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[1]);
+        numMemberLabel.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         numMember.add(numMemberLabel);
 
         JLabel numBorrowerLabel = new JLabel("Borrowers");
-        numBorrowerLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+        numBorrowerLabel.setFont(new Font("Dialog", Font.BOLD, Constants.FONT_SIZE_LABEL));
         numBorrowerLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numBorrowerLabel.setVerticalAlignment(SwingConstants.CENTER);
-        numBorrowerLabel.setLocation(25, 40);
-        numBorrowerLabel.setSize(250, 50);
+        numBorrowerLabel.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[1]);
+        numBorrowerLabel.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         numBorrower.add(numBorrowerLabel);
 
         JLabel numStaffLabel = new JLabel("Staffs");
-        numStaffLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+        numStaffLabel.setFont(new Font("Dialog", Font.BOLD, Constants.FONT_SIZE_LABEL));
         numStaffLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numStaffLabel.setVerticalAlignment(SwingConstants.CENTER);
-        numStaffLabel.setLocation(25, 40);
-        numStaffLabel.setSize(250, 50);
+        numStaffLabel.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[1]);
+        numStaffLabel.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         numStaff.add(numStaffLabel);
 
         JLabel totalBookCount = new JLabel("2890");
-        totalBookCount.setFont(new Font("Dialog", Font.PLAIN, 50));
+        totalBookCount.setFont(new Font("Dialog", Font.PLAIN, Constants.FONT_SIZE_COUNT));
         totalBookCount.setHorizontalAlignment(SwingConstants.CENTER);
         totalBookCount.setVerticalAlignment(SwingConstants.CENTER);
-        totalBookCount.setLocation(25, 90);
-        totalBookCount.setSize(250, 50);
+        totalBookCount.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[2]);
+        totalBookCount.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         totalBook.add(totalBookCount);
 
         JLabel availBookCount = new JLabel("2305");
-        availBookCount.setFont(new Font("Dialog", Font.PLAIN, 50));
+        availBookCount.setFont(new Font("Dialog", Font.PLAIN, Constants.FONT_SIZE_COUNT));
         availBookCount.setHorizontalAlignment(SwingConstants.CENTER);
         availBookCount.setVerticalAlignment(SwingConstants.CENTER);
-        availBookCount.setLocation(25, 90);
-        availBookCount.setSize(250, 50);
+        availBookCount.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[2]);
+        availBookCount.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         availBook.add(availBookCount);
 
         JLabel totalPriceCount = new JLabel("$153,200");
-        totalPriceCount.setFont(new Font("Dialog", Font.PLAIN, 50));
+        totalPriceCount.setFont(new Font("Dialog", Font.PLAIN, Constants.FONT_SIZE_COUNT));
         totalPriceCount.setHorizontalAlignment(SwingConstants.CENTER);
         totalPriceCount.setVerticalAlignment(SwingConstants.CENTER);
-        totalPriceCount.setLocation(25, 90);
-        totalPriceCount.setSize(250, 50);
+        totalPriceCount.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[2]);
+        totalPriceCount.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         totalPrice.add(totalPriceCount);
 
         JLabel numMemberCount = new JLabel("207");
-        numMemberCount.setFont(new Font("Dialog", Font.PLAIN, 50));
+        numMemberCount.setFont(new Font("Dialog", Font.PLAIN, Constants.FONT_SIZE_COUNT));
         numMemberCount.setHorizontalAlignment(SwingConstants.CENTER);
         numMemberCount.setVerticalAlignment(SwingConstants.CENTER);
-        numMemberCount.setLocation(25, 90);
-        numMemberCount.setSize(250, 50);
+        numMemberCount.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[2]);
+        numMemberCount.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         numMember.add(numMemberCount);
 
         JLabel numBorrowerCount = new JLabel("360");
-        numBorrowerCount.setFont(new Font("Dialog", Font.PLAIN, 50));
+        numBorrowerCount.setFont(new Font("Dialog", Font.PLAIN, Constants.FONT_SIZE_COUNT));
         numBorrowerCount.setHorizontalAlignment(SwingConstants.CENTER);
         numBorrowerCount.setVerticalAlignment(SwingConstants.CENTER);
-        numBorrowerCount.setLocation(25, 90);
-        numBorrowerCount.setSize(250, 50);
+        numBorrowerCount.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[2]);
+        numBorrowerCount.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         numBorrower.add(numBorrowerCount);
 
         JLabel numStaffCount = new JLabel("15");
-        numStaffCount.setFont(new Font("Dialog", Font.PLAIN, 50));
+        numStaffCount.setFont(new Font("Dialog", Font.PLAIN, Constants.FONT_SIZE_COUNT));
         numStaffCount.setHorizontalAlignment(SwingConstants.CENTER);
         numStaffCount.setVerticalAlignment(SwingConstants.CENTER);
-        numStaffCount.setLocation(25, 90);
-        numStaffCount.setSize(250, 50);
+        numStaffCount.setLocation(Constants.COUNT_POS[0], Constants.COUNT_POS[2]);
+        numStaffCount.setSize(Constants.BLOCK_SIZE[0], Constants.BLOCK_SIZE[1]);
         numStaff.add(numStaffCount);
     }
 

@@ -39,7 +39,7 @@ public class Sidebar extends JPanel {
 
         private void displayButtons() {
                 JLabel homeButton = new JLabel();
-                homeButton.setSize(60, 60);
+                homeButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 homeButton.setLocation(20, 70);
                 ImageIcon homeIcon = new ImageIcon("src/Icons/home.png");
                 Image homeImage = homeIcon.getImage();
@@ -51,7 +51,7 @@ public class Sidebar extends JPanel {
                 add(homeButton);
 
                 JLabel searchButton = new JLabel();
-                searchButton.setSize(60, 60);
+                searchButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 searchButton.setLocation(20, 170);
                 ImageIcon searchIcon = new ImageIcon("src/Icons/search.png");
                 Image searchImage = searchIcon.getImage();
@@ -63,7 +63,7 @@ public class Sidebar extends JPanel {
                 add(searchButton);
 
                 JLabel bookButton = new JLabel();
-                bookButton.setSize(60, 60);
+                bookButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 bookButton.setLocation(20, 270);
                 ImageIcon bookIcon = new ImageIcon("src/Icons/book.png");
                 Image bookImage = bookIcon.getImage();
@@ -75,7 +75,7 @@ public class Sidebar extends JPanel {
                 add(bookButton);
 
                 JLabel borrowerButton = new JLabel();
-                borrowerButton.setSize(60, 60);
+                borrowerButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 borrowerButton.setLocation(20, 370);
                 ImageIcon borrowerIcon = new ImageIcon("src/Icons/borrower.png");
                 Image borrowerImage = borrowerIcon.getImage();
@@ -88,7 +88,7 @@ public class Sidebar extends JPanel {
                 add(borrowerButton);
 
                 JLabel memberButton = new JLabel();
-                memberButton.setSize(60, 60);
+                memberButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 memberButton.setLocation(20, 470);
                 ImageIcon memberIcon = new ImageIcon("src/Icons/member.png");
                 Image memberImage = memberIcon.getImage();
@@ -100,7 +100,7 @@ public class Sidebar extends JPanel {
                 add(memberButton);
 
                 JLabel staffButton = new JLabel();
-                staffButton.setSize(60, 60);
+                staffButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 staffButton.setLocation(20, 570);
                 ImageIcon staffIcon = new ImageIcon("src/Icons/staff.png");
                 Image staffImage = staffIcon.getImage();
