@@ -1,6 +1,8 @@
 package Managements.BookPanel;
 
-import javax.swing.JPanel;
+import java.awt.*;
+
+import javax.swing.*;
 
 import INITIAL.Constants;
 
@@ -12,6 +14,7 @@ public class EditBookPanel extends JPanel {
         setSize(500, 500);
         setLocation(320, 110);
         setVisible(false);
+        setBorder(BorderFactory.createLineBorder(Color.black, 3));
         constructPanel();
     }
 

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import Controls.BookButtonListener.*;
 import Functions.Functions;
@@ -130,6 +131,25 @@ public class Book extends JPanel implements Functions {
     }
 
     private void displayTable() {
+        final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
+        DefaultTableModel model = new DefaultTableModel();
+        JTable bookTable = new JTable();
+
+        bookTable.setFocusable(false);
+        bookTable.getTableHeader().setResizingAllowed(false);
+        bookTable.getTableHeader().setReorderingAllowed(false);
+        bookTable.getTableHeader().setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+        bookTable.getTableHeader().setBackground(new Color(0, 0, 0));
+        bookTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 20));
+        bookTable.setFont(new Font("Dialog", Font.PLAIN, 15));
+
+        bookTable.setSize(1100, 530);
+        bookTable.setLocation(35, 125);
+        bookTable.setLayout(null);
+        bookTable.setBackground(Constants.BACK_COLOR);
+        bookTable.setShowGrid(true);
+        bookTable.setEnabled(false);
+        add(bookTable);
 
     }
 }
