@@ -14,7 +14,7 @@ public class Home extends JPanel {
 
     public Home() {
         setLayout(null);
-        setBackground(new Color(239, 243, 234));
+        setBackground(Constants.MAIN_COLOR);
         setSize(Constants.MAIN_DIMENSIONS[0], Constants.MAIN_DIMENSIONS[1]);
         setLocation(100, 20);
         setVisible(true);
@@ -37,7 +37,7 @@ public class Home extends JPanel {
         totalBook.setLayout(null);
         totalBook.setLocation(80, 130);
         totalBook.setSize(300, 200);
-        totalBook.setBackground(new Color(183, 183, 183));
+        totalBook.setBackground(Constants.BACK_COLOR);
         totalBook.setBorder(BorderFactory.createLineBorder(Color.black, 4));
         totalBook.addMouseListener(new TBListener(totalBook));
         add(totalBook);
@@ -46,7 +46,7 @@ public class Home extends JPanel {
         availBook.setLayout(null);
         availBook.setLocation(440, 130);
         availBook.setSize(300, 200);
-        availBook.setBackground(new Color(183, 183, 183));
+        availBook.setBackground(Constants.BACK_COLOR);
         availBook.setBorder(BorderFactory.createLineBorder(Color.black, 4));
         availBook.addMouseListener(new ABListener(availBook));
         add(availBook);
@@ -55,7 +55,7 @@ public class Home extends JPanel {
         totalPrice.setLayout(null);
         totalPrice.setLocation(800, 130);
         totalPrice.setSize(300, 200);
-        totalPrice.setBackground(new Color(183, 183, 183));
+        totalPrice.setBackground(Constants.BACK_COLOR);
         totalPrice.setBorder(BorderFactory.createLineBorder(Color.black, 4));
         totalPrice.addMouseListener(new TPListener(totalPrice));
         add(totalPrice);
@@ -64,7 +64,7 @@ public class Home extends JPanel {
         numMember.setLayout(null);
         numMember.setLocation(80, 390);
         numMember.setSize(300, 200);
-        numMember.setBackground(new Color(183, 183, 183));
+        numMember.setBackground(Constants.BACK_COLOR);
         numMember.setBorder(BorderFactory.createLineBorder(Color.black, 4));
         numMember.addMouseListener(new NMListener(numMember));
         add(numMember);
@@ -73,7 +73,7 @@ public class Home extends JPanel {
         numBorrower.setLayout(null);
         numBorrower.setLocation(440, 390);
         numBorrower.setSize(300, 200);
-        numBorrower.setBackground(new Color(183, 183, 183));
+        numBorrower.setBackground(Constants.BACK_COLOR);
         numBorrower.setBorder(BorderFactory.createLineBorder(Color.black, 4));
         numBorrower.addMouseListener(new NBListener(numBorrower));
         add(numBorrower);
@@ -82,7 +82,7 @@ public class Home extends JPanel {
         numStaff.setLayout(null);
         numStaff.setLocation(800, 390);
         numStaff.setSize(300, 200);
-        numStaff.setBackground(new Color(183, 183, 183));
+        numStaff.setBackground(Constants.BACK_COLOR);
         numStaff.setBorder(BorderFactory.createLineBorder(Color.black, 4));
         numStaff.addMouseListener(new NSListener(numStaff));
         add(numStaff);

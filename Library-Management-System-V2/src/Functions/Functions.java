@@ -1,4 +1,6 @@
-public abstract class Functions {
+package Functions;
+
+public interface Functions {
     public abstract void add();
 
     public abstract void delete();
