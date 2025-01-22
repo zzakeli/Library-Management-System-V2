@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Controls.BookButtonListener.*;
 import Functions.Functions;
-import INITIAL.Constants;
+import Initial.Constants;
 import Managements.BookPanel.*;
 
 public class Book extends JPanel implements Functions {

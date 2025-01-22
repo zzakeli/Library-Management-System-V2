@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import INITIAL.Constants;
+import Initial.Constants;
 
 public class Staff extends JPanel {
 

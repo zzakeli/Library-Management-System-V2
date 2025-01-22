@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 import Controls.FieldListener.*;
-import INITIAL.Constants;
+import Initial.Constants;
 
 public class AddBookPanel extends JPanel {
 

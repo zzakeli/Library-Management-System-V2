@@ -1,10 +1,11 @@
+package Main;
+
 import java.awt.*;
 import javax.swing.*;
 
 import Controls.*;
+import Initial.Constants;
 import Managements.*;
-
-import INITIAL.Constants;
 
 public class Sidebar extends JPanel {
 

@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTextField;
 
-import INITIAL.Constants;
+import Initial.Constants;
 
 public class AuthorFieldListener implements MouseListener {
 

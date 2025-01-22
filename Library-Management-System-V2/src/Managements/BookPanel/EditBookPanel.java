@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import INITIAL.Constants;
+import Initial.Constants;
 
 public class EditBookPanel extends JPanel {
 

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Controls.BlockListener.*;
-import INITIAL.Constants;
+import Initial.Constants;
 
 public class Home extends JPanel {
 
