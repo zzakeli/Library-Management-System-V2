@@ -1,14 +1,21 @@
 package Managements;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import Controls.BookButtonListener.*;
 import Functions.Functions;
 import INITIAL.Constants;
+import Managements.BookPanel.*;
 
 public class Book extends JPanel implements Functions {
+
+    protected AddBookPanel addBookPanel = new AddBookPanel();
+    protected EditBookPanel editBookPanel = new EditBookPanel();
+    protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel();
 
     public Book() {
         setLayout(null);
@@ -16,6 +23,11 @@ public class Book extends JPanel implements Functions {
         setSize(Constants.MAIN_DIMENSIONS[0], Constants.MAIN_DIMENSIONS[1]);
         setLocation(100, 0);
         setVisible(false);
+
+        add(addBookPanel);
+        add(editBookPanel);
+        add(deleteBookPanel);
+
         displayLabel();
         displayButtons();
         displayTable();
@@ -23,64 +35,101 @@ public class Book extends JPanel implements Functions {
 
     @Override
     public void add() {
-
-    }
-
-    @Override
-    public void delete() {
-
+        addBookPanel.setVisible(true);
+        addButton.setEnabled(false);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
     }
 
     @Override
     public void edit() {
-
+        editBookPanel.setVisible(true);
+        addButton.setEnabled(false);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
     }
 
-    public void displayLabel() {
+    @Override
+    public void delete() {
+        deleteBookPanel.setVisible(true);
+        addButton.setEnabled(false);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+    }
+
+    private void displayLabel() {
         JLabel bookSection = new JLabel("Book Section");
         bookSection.setSize(1280, 50);
-        bookSection.setLocation(275, 55);
+        bookSection.setLocation(275, 35);
         bookSection.setHorizontalAlignment(SwingConstants.CENTER);
         bookSection.setFont(new Font("Dialog", Font.BOLD, 50));
         add(bookSection);
     }
 
-    public void displayButtons() {
-        JButton addButton = new JButton("ADD BOOK");
+    protected JButton addButton = new JButton("ADD BOOK");
+    protected JButton editButton = new JButton("EDIT BOOK");
+    protected JButton deleteButton = new JButton("DELETE BOOK");
+
+    private void displayButtons() {
+        addButton.setFocusable(false);
         addButton.setFont(Constants.BUTTON_FONT);
         addButton.setForeground(Constants.FORE_COLOR);
         addButton.setBackground(Constants.BACK_COLOR);
         addButton.setFocusable(false);
         addButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         addButton.setSize(180, 70);
-        addButton.setLocation(70, 50);
+        addButton.setLocation(70, 30);
         addButton.addMouseListener(new AddBookListener(addButton));
+        addButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                add();
+            }
+
+        });
         add(addButton);
 
-        JButton editButton = new JButton("EDIT BOOK");
+        editButton.setFocusable(false);
         editButton.setFont(Constants.BUTTON_FONT);
         editButton.setForeground(Constants.FORE_COLOR);
         editButton.setBackground(Constants.BACK_COLOR);
         editButton.setFocusable(false);
         editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         editButton.setSize(180, 70);
-        editButton.setLocation(280, 50);
+        editButton.setLocation(280, 30);
         editButton.addMouseListener(new EditBookListener(editButton));
+        editButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                edit();
+            }
+
+        });
         add(editButton);
 
-        JButton deleteButton = new JButton("DELETE BOOK");
+        deleteButton.setFocusable(false);
         deleteButton.setFont(Constants.BUTTON_FONT);
         deleteButton.setForeground(Constants.FORE_COLOR);
         deleteButton.setBackground(Constants.BACK_COLOR);
         deleteButton.setFocusable(false);
         deleteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         deleteButton.setSize(180, 70);
-        deleteButton.setLocation(490, 50);
+        deleteButton.setLocation(490, 30);
         deleteButton.addMouseListener(new DeleteBookListener(deleteButton));
+        deleteButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+
+        });
         add(deleteButton);
     }
 
-    public void displayTable() {
+    private void displayTable() {
 
     }
 }
