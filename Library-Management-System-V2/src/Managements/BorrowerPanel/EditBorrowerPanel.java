@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-import Controls.FieldListener.*;
+import Controls.FieldListener.FieldListener;
 import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
 
