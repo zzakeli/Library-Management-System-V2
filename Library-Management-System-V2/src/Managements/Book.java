@@ -14,7 +14,11 @@ import Managements.BookPanel.*;
 
 public class Book extends JPanel implements Functions {
 
-    protected AddBookPanel addBookPanel = new AddBookPanel();
+    protected JButton addButton = new JButton("ADD BOOK");
+    protected JButton editButton = new JButton("EDIT BOOK");
+    protected JButton deleteButton = new JButton("DELETE BOOK");
+
+    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton);
     protected EditBookPanel editBookPanel = new EditBookPanel();
     protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel();
 
@@ -66,10 +70,6 @@ public class Book extends JPanel implements Functions {
         bookSection.setFont(new Font("Dialog", Font.BOLD, 50));
         add(bookSection);
     }
-
-    protected JButton addButton = new JButton("ADD BOOK");
-    protected JButton editButton = new JButton("EDIT BOOK");
-    protected JButton deleteButton = new JButton("DELETE BOOK");
 
     private void displayButtons() {
         addButton.setFocusable(false);

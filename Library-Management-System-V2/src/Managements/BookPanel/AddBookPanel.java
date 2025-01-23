@@ -11,17 +11,70 @@ import Initial.Constants;
 
 public class AddBookPanel extends JPanel {
 
-    public AddBookPanel() {
+    JButton addButton;
+    JButton editButton;
+    JButton deleteButton;
+
+    public AddBookPanel(JButton addButton, JButton editButton, JButton deleteButton) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
         setSize(480, 450);
         setLocation(320, 110);
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
+        initButtons(addButton, editButton, deleteButton);
         constructPanel();
     }
 
+    private void initButtons(JButton addButton, JButton editButton, JButton deleteButton) {
+        this.addButton = addButton;
+        this.editButton = editButton;
+        this.deleteButton = deleteButton;
+    }
+
     private void constructPanel() {
+        JLabel closeButton = new JLabel();
+        closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
+        closeButton.setLocation(440, 10);
+        ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
+        Image closeImage = closeIcon.getImage();
+        Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
+                Image.SCALE_SMOOTH);
+        ImageIcon scaledClose = new ImageIcon(closeScale);
+        closeButton.setIcon(scaledClose);
+        closeButton.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                setVisible(false);
+                addButton.setEnabled(true);
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+        add(closeButton);
+
         JTextField titleField = new JTextField();
         titleField.setSize(420, 40);
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));

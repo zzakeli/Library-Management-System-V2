@@ -42,7 +42,7 @@ public class Sidebar extends JPanel {
                 JLabel homeButton = new JLabel();
                 homeButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 homeButton.setLocation(20, 70);
-                ImageIcon homeIcon = new ImageIcon("src/Icons/home.png");
+                ImageIcon homeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/home.png");
                 Image homeImage = homeIcon.getImage();
                 Image homeScale = homeImage.getScaledInstance(homeButton.getWidth(), homeButton.getHeight(),
                                 Image.SCALE_SMOOTH);
@@ -54,7 +54,7 @@ public class Sidebar extends JPanel {
                 JLabel searchButton = new JLabel();
                 searchButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 searchButton.setLocation(20, 170);
-                ImageIcon searchIcon = new ImageIcon("src/Icons/search.png");
+                ImageIcon searchIcon = new ImageIcon("Library-Management-System-V2/src/Icons/search.png");
                 Image searchImage = searchIcon.getImage();
                 Image searchScale = searchImage.getScaledInstance(searchButton.getWidth(), searchButton.getHeight(),
                                 Image.SCALE_SMOOTH);
@@ -66,7 +66,7 @@ public class Sidebar extends JPanel {
                 JLabel bookButton = new JLabel();
                 bookButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 bookButton.setLocation(20, 270);
-                ImageIcon bookIcon = new ImageIcon("src/Icons/book.png");
+                ImageIcon bookIcon = new ImageIcon("Library-Management-System-V2/src/Icons/book.png");
                 Image bookImage = bookIcon.getImage();
                 Image bookScale = bookImage.getScaledInstance(bookButton.getWidth(), bookButton.getHeight(),
                                 Image.SCALE_SMOOTH);
@@ -78,7 +78,7 @@ public class Sidebar extends JPanel {
                 JLabel borrowerButton = new JLabel();
                 borrowerButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 borrowerButton.setLocation(20, 370);
-                ImageIcon borrowerIcon = new ImageIcon("src/Icons/borrower.png");
+                ImageIcon borrowerIcon = new ImageIcon("Library-Management-System-V2/src/Icons/borrower.png");
                 Image borrowerImage = borrowerIcon.getImage();
                 Image borrowerScale = borrowerImage.getScaledInstance(borrowerButton.getWidth(),
                                 borrowerButton.getHeight(),
@@ -91,7 +91,7 @@ public class Sidebar extends JPanel {
                 JLabel memberButton = new JLabel();
                 memberButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 memberButton.setLocation(20, 470);
-                ImageIcon memberIcon = new ImageIcon("src/Icons/member.png");
+                ImageIcon memberIcon = new ImageIcon("Library-Management-System-V2/src/Icons/member.png");
                 Image memberImage = memberIcon.getImage();
                 Image memberScale = memberImage.getScaledInstance(memberButton.getWidth(), memberButton.getHeight(),
                                 Image.SCALE_SMOOTH);
@@ -103,7 +103,7 @@ public class Sidebar extends JPanel {
                 JLabel staffButton = new JLabel();
                 staffButton.setSize(Constants.ICON_SIZE, Constants.ICON_SIZE);
                 staffButton.setLocation(20, 570);
-                ImageIcon staffIcon = new ImageIcon("src/Icons/staff.png");
+                ImageIcon staffIcon = new ImageIcon("Library-Management-System-V2/src/Icons/staff.png");
                 Image staffImage = staffIcon.getImage();
                 Image staffScale = staffImage.getScaledInstance(staffButton.getWidth(), staffButton.getHeight(),
                                 Image.SCALE_SMOOTH);
