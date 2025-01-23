@@ -3,16 +3,17 @@ package Controls.FieldListener;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JTextField;
 
 import Initial.Constants;
 
-public class DateFieldListener implements MouseListener {
+public class FieldListener implements MouseListener {
 
-    JTextField datePublishedField;
+    JTextField field;
 
-    public DateFieldListener(JTextField datePublishedField) {
-        this.datePublishedField = datePublishedField;
+    public FieldListener(JTextField field) {
+        this.field = field;
     }
 
     @Override
@@ -32,12 +33,12 @@ public class DateFieldListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        datePublishedField.setBackground(new Color(220, 220, 220));
+        field.setBackground(new Color(220, 220, 220));
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        datePublishedField.setBackground(Constants.MAIN_COLOR);
+        field.setBackground(Constants.MAIN_COLOR);
     }
 
 }

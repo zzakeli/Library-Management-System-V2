@@ -6,12 +6,12 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-public class NSListener implements MouseListener {
+public class BlockListener implements MouseListener {
 
-    JPanel numStaff;
+    JPanel block;
 
-    public NSListener(JPanel numStaff) {
-        this.numStaff = numStaff;
+    public BlockListener(JPanel block) {
+        this.block = block;
     }
 
     @Override
@@ -31,12 +31,12 @@ public class NSListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        numStaff.setBackground(new Color(220, 220, 220));
+        block.setBackground(new Color(220, 220, 220));
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        numStaff.setBackground(new Color(183, 183, 183));
+        block.setBackground(new Color(183, 183, 183));
     }
 
 }

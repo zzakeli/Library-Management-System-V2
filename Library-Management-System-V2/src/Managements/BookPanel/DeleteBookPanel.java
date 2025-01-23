@@ -1,11 +1,12 @@
 package Managements.BookPanel;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-import Controls.FieldListener.TitleFieldListener;
+import Controls.FieldListener.FieldListener;
 import Initial.Constants;
 
 public class DeleteBookPanel extends JPanel {
@@ -87,7 +88,7 @@ public class DeleteBookPanel extends JPanel {
         searchField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         searchField.setBackground(Constants.MAIN_COLOR);
         searchField.setLocation(29, 70);
-        searchField.addMouseListener(new TitleFieldListener(searchField));
+        searchField.addMouseListener(new FieldListener(searchField));
         add(searchField);
 
         JButton searchButton = new JButton("Search");
@@ -100,29 +101,29 @@ public class DeleteBookPanel extends JPanel {
         searchButton.addMouseListener(new MouseListener() {
 
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
             }
 
             @Override
-            public void mousePressed(java.awt.event.MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 // Show the matching book title when entered
                 // else prompt the book title not found.
             }
 
             @Override
-            public void mouseReleased(java.awt.event.MouseEvent e) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-
+            public void mouseEntered(MouseEvent e) {
+                searchButton.setBackground(new Color(220, 220, 220));
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-
+            public void mouseExited(MouseEvent e) {
+                searchButton.setBackground(Constants.MAIN_COLOR);
             }
 
         });

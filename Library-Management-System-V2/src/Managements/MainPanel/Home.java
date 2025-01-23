@@ -39,7 +39,7 @@ public class Home extends JPanel {
         totalBook.setSize(300, 200);
         totalBook.setBackground(Constants.BACK_COLOR);
         totalBook.setBorder(BorderFactory.createLineBorder(Color.black, 4));
-        totalBook.addMouseListener(new TBListener(totalBook));
+        totalBook.addMouseListener(new BlockListener(totalBook));
         add(totalBook);
 
         JPanel availBook = new JPanel();
@@ -48,7 +48,7 @@ public class Home extends JPanel {
         availBook.setSize(300, 200);
         availBook.setBackground(Constants.BACK_COLOR);
         availBook.setBorder(BorderFactory.createLineBorder(Color.black, 4));
-        availBook.addMouseListener(new ABListener(availBook));
+        availBook.addMouseListener(new BlockListener(availBook));
         add(availBook);
 
         JPanel totalPrice = new JPanel();
@@ -57,7 +57,7 @@ public class Home extends JPanel {
         totalPrice.setSize(300, 200);
         totalPrice.setBackground(Constants.BACK_COLOR);
         totalPrice.setBorder(BorderFactory.createLineBorder(Color.black, 4));
-        totalPrice.addMouseListener(new TPListener(totalPrice));
+        totalPrice.addMouseListener(new BlockListener(totalPrice));
         add(totalPrice);
 
         JPanel numMember = new JPanel();
@@ -66,7 +66,7 @@ public class Home extends JPanel {
         numMember.setSize(300, 200);
         numMember.setBackground(Constants.BACK_COLOR);
         numMember.setBorder(BorderFactory.createLineBorder(Color.black, 4));
-        numMember.addMouseListener(new NMListener(numMember));
+        numMember.addMouseListener(new BlockListener(numMember));
         add(numMember);
 
         JPanel numBorrower = new JPanel();
@@ -75,7 +75,7 @@ public class Home extends JPanel {
         numBorrower.setSize(300, 200);
         numBorrower.setBackground(Constants.BACK_COLOR);
         numBorrower.setBorder(BorderFactory.createLineBorder(Color.black, 4));
-        numBorrower.addMouseListener(new NBListener(numBorrower));
+        numBorrower.addMouseListener(new BlockListener(numBorrower));
         add(numBorrower);
 
         JPanel numStaff = new JPanel();
@@ -84,7 +84,7 @@ public class Home extends JPanel {
         numStaff.setSize(300, 200);
         numStaff.setBackground(Constants.BACK_COLOR);
         numStaff.setBorder(BorderFactory.createLineBorder(Color.black, 4));
-        numStaff.addMouseListener(new NSListener(numStaff));
+        numStaff.addMouseListener(new BlockListener(numStaff));
         add(numStaff);
 
         displayNumCount(totalBook, availBook, totalPrice, numMember, numBorrower, numStaff);

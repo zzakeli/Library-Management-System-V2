@@ -1,4 +1,4 @@
-package Controls.BorrowerButtonListener;
+package Controls.ButtonListener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -7,12 +7,12 @@ import javax.swing.JButton;
 
 import Initial.Constants;
 
-public class AddBorrowerListener implements MouseListener {
+public class ButtonListener implements MouseListener {
 
-    JButton addButton;
+    JButton button;
 
-    public AddBorrowerListener(JButton addButton) {
-        this.addButton = addButton;
+    public ButtonListener(JButton button) {
+        this.button = button;
     }
 
     @Override
@@ -32,12 +32,12 @@ public class AddBorrowerListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        addButton.setBackground(Constants.HOVER_COLOR);
+        button.setBackground(Constants.HOVER_COLOR);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        addButton.setBackground(Constants.BACK_COLOR);
+        button.setBackground(Constants.BACK_COLOR);
     }
 
 }

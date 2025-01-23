@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 import Controls.FieldListener.*;
+import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
 
 public class EditBookPanel extends JPanel {
@@ -81,7 +82,7 @@ public class EditBookPanel extends JPanel {
         titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         titleField.setBackground(Constants.MAIN_COLOR);
         titleField.setLocation(29, 60);
-        titleField.addMouseListener(new TitleFieldListener(titleField));
+        titleField.addMouseListener(new FieldListener(titleField));
         add(titleField);
 
         JTextField authorField = new JTextField();
@@ -90,7 +91,7 @@ public class EditBookPanel extends JPanel {
         authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         authorField.setBackground(Constants.MAIN_COLOR);
         authorField.setLocation(29, 140);
-        authorField.addMouseListener(new AuthorFieldListener(authorField));
+        authorField.addMouseListener(new FieldListener(authorField));
         add(authorField);
 
         JTextField datePublishedField = new JTextField();
@@ -99,7 +100,7 @@ public class EditBookPanel extends JPanel {
         datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         datePublishedField.setBackground(Constants.MAIN_COLOR);
         datePublishedField.setLocation(249, 140);
-        datePublishedField.addMouseListener(new DateFieldListener(datePublishedField));
+        datePublishedField.addMouseListener(new FieldListener(datePublishedField));
         add(datePublishedField);
 
         JTextField genreField = new JTextField();
@@ -108,7 +109,7 @@ public class EditBookPanel extends JPanel {
         genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         genreField.setBackground(Constants.MAIN_COLOR);
         genreField.setLocation(29, 230);
-        genreField.addMouseListener(new GenreFieldListener(genreField));
+        genreField.addMouseListener(new FieldListener(genreField));
         add(genreField);
 
         JTextField worthField = new JTextField();
@@ -117,7 +118,7 @@ public class EditBookPanel extends JPanel {
         worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         worthField.setBackground(Constants.MAIN_COLOR);
         worthField.setLocation(249, 230);
-        worthField.addMouseListener(new WorthFieldListener(worthField));
+        worthField.addMouseListener(new FieldListener(worthField));
         add(worthField);
 
         JButton saveButton = new JButton("Save");
@@ -127,34 +128,7 @@ public class EditBookPanel extends JPanel {
         saveButton.setLocation(159, 310);
         saveButton.setFocusable(false);
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        saveButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                saveButton.setBackground(new Color(220, 220, 220));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                saveButton.setBackground(Constants.MAIN_COLOR);
-            }
-
-        });
+        saveButton.addMouseListener(new SubButtonListener(saveButton));
         add(saveButton);
 
         addLabels();

@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 import Controls.FieldListener.*;
+import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
 
 public class AddBorrowerPanel extends JPanel {
@@ -81,7 +82,7 @@ public class AddBorrowerPanel extends JPanel {
         borrowerField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         borrowerField.setBackground(Constants.MAIN_COLOR);
         borrowerField.setLocation(29, 60);
-        borrowerField.addMouseListener(new TitleFieldListener(borrowerField));
+        borrowerField.addMouseListener(new FieldListener(borrowerField));
         add(borrowerField);
 
         JTextField bookField = new JTextField();
@@ -90,8 +91,26 @@ public class AddBorrowerPanel extends JPanel {
         bookField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         bookField.setBackground(Constants.MAIN_COLOR);
         bookField.setLocation(29, 140);
-        bookField.addMouseListener(new TitleFieldListener(bookField));
+        bookField.addMouseListener(new FieldListener(bookField));
         add(bookField);
+
+        JTextField startDateField = new JTextField();
+        startDateField.setSize(190, 40);
+        startDateField.setFont(new Font("Dialog", Font.PLAIN, 20));
+        startDateField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        startDateField.setBackground(Constants.MAIN_COLOR);
+        startDateField.setLocation(29, 220);
+        startDateField.addMouseListener(new FieldListener(startDateField));
+        add(startDateField);
+
+        JTextField dueDateField = new JTextField();
+        dueDateField.setSize(190, 40);
+        dueDateField.setFont(new Font("Dialog", Font.PLAIN, 20));
+        dueDateField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        dueDateField.setBackground(Constants.MAIN_COLOR);
+        dueDateField.setLocation(259, 220);
+        dueDateField.addMouseListener(new FieldListener(dueDateField));
+        add(dueDateField);
 
         JButton saveButton = new JButton("Save");
         saveButton.setBackground(Constants.MAIN_COLOR);
@@ -100,34 +119,7 @@ public class AddBorrowerPanel extends JPanel {
         saveButton.setLocation(159, 310);
         saveButton.setFocusable(false);
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        saveButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                saveButton.setBackground(new Color(220, 220, 220));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                saveButton.setBackground(Constants.MAIN_COLOR);
-            }
-
-        });
+        saveButton.addMouseListener(new SubButtonListener(saveButton));
         add(saveButton);
 
         addLabels();
@@ -146,6 +138,17 @@ public class AddBorrowerPanel extends JPanel {
         bookLabel.setLocation(29, 110);
         add(bookLabel);
 
+        JLabel startDateLabel = new JLabel("Start");
+        startDateLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+        startDateLabel.setSize(100, 30);
+        startDateLabel.setLocation(29, 190);
+        add(startDateLabel);
+
+        JLabel endDateLabel = new JLabel("End");
+        endDateLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+        endDateLabel.setSize(100, 30);
+        endDateLabel.setLocation(259, 190);
+        add(endDateLabel);
     }
 
 }

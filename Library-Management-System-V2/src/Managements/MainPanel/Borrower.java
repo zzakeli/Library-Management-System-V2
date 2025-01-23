@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import Controls.BorrowerButtonListener.*;
+import Controls.ButtonListener.ButtonListener;
 import Functions.Functions;
 import Initial.Constants;
 import Managements.BorrowerPanel.*;
@@ -79,7 +79,7 @@ public class Borrower extends JPanel implements Functions {
         addBorrower.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         addBorrower.setSize(180, 70);
         addBorrower.setLocation(70, 30);
-        addBorrower.addMouseListener(new AddBorrowerListener(addBorrower));
+        addBorrower.addMouseListener(new ButtonListener(addBorrower));
         addBorrower.addActionListener(new ActionListener() {
 
             @Override
@@ -98,7 +98,7 @@ public class Borrower extends JPanel implements Functions {
         editBorrower.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         editBorrower.setSize(180, 70);
         editBorrower.setLocation(280, 30);
-        editBorrower.addMouseListener(new EditBorrowerListener(editBorrower));
+        editBorrower.addMouseListener(new ButtonListener(editBorrower));
         editBorrower.addActionListener(new ActionListener() {
 
             @Override
@@ -117,7 +117,7 @@ public class Borrower extends JPanel implements Functions {
         deleteBorrower.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         deleteBorrower.setSize(180, 70);
         deleteBorrower.setLocation(490, 30);
-        deleteBorrower.addMouseListener(new DeleteBorrowerListener(deleteBorrower));
+        deleteBorrower.addMouseListener(new ButtonListener(deleteBorrower));
         deleteBorrower.addActionListener(new ActionListener() {
 
             @Override

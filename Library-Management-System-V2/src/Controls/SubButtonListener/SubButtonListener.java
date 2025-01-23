@@ -1,5 +1,6 @@
-package Controls.BookButtonListener;
+package Controls.SubButtonListener;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -7,12 +8,12 @@ import javax.swing.JButton;
 
 import Initial.Constants;
 
-public class AddBookListener implements MouseListener {
+public class SubButtonListener implements MouseListener {
 
-    JButton addButton;
+    JButton button;
 
-    public AddBookListener(JButton addButton) {
-        this.addButton = addButton;
+    public SubButtonListener(JButton button) {
+        this.button = button;
     }
 
     @Override
@@ -32,12 +33,12 @@ public class AddBookListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        addButton.setBackground(Constants.HOVER_COLOR);
+        button.setBackground(new Color(220, 220, 220));
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        addButton.setBackground(Constants.BACK_COLOR);
+        button.setBackground(Constants.MAIN_COLOR);
     }
 
 }

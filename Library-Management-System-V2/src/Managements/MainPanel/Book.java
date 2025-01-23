@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 // import javax.swing.table.DefaultTableModel;
 
-import Controls.BookButtonListener.*;
+import Controls.ButtonListener.ButtonListener;
 import Functions.Functions;
 import Initial.Constants;
 import Managements.BookPanel.*;
@@ -79,7 +79,7 @@ public class Book extends JPanel implements Functions {
         addButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         addButton.setSize(180, 70);
         addButton.setLocation(70, 30);
-        addButton.addMouseListener(new AddBookListener(addButton));
+        addButton.addMouseListener(new ButtonListener(addButton));
         addButton.addActionListener(new ActionListener() {
 
             @Override
@@ -98,7 +98,7 @@ public class Book extends JPanel implements Functions {
         editButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         editButton.setSize(180, 70);
         editButton.setLocation(280, 30);
-        editButton.addMouseListener(new EditBookListener(editButton));
+        editButton.addMouseListener(new ButtonListener(editButton));
         editButton.addActionListener(new ActionListener() {
 
             @Override
@@ -117,7 +117,7 @@ public class Book extends JPanel implements Functions {
         deleteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         deleteButton.setSize(180, 70);
         deleteButton.setLocation(490, 30);
-        deleteButton.addMouseListener(new DeleteBookListener(deleteButton));
+        deleteButton.addMouseListener(new ButtonListener(deleteButton));
         deleteButton.addActionListener(new ActionListener() {
 
             @Override
