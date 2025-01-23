@@ -35,7 +35,7 @@ public class AddBookPanel extends JPanel {
     private void constructPanel() {
         JLabel closeButton = new JLabel();
         closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
-        closeButton.setLocation(440, 10);
+        closeButton.setLocation(430, 15);
         ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
         Image closeImage = closeIcon.getImage();
         Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
@@ -80,7 +80,7 @@ public class AddBookPanel extends JPanel {
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));
         titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         titleField.setBackground(Constants.MAIN_COLOR);
-        titleField.setLocation(29, 50);
+        titleField.setLocation(29, 60);
         titleField.addMouseListener(new TitleFieldListener(titleField));
         add(titleField);
 
@@ -164,7 +164,7 @@ public class AddBookPanel extends JPanel {
         JLabel titleLabel = new JLabel("Title");
         titleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
         titleLabel.setSize(100, 30);
-        titleLabel.setLocation(29, 20);
+        titleLabel.setLocation(29, 30);
         add(titleLabel);
 
         JLabel authorLabel = new JLabel("Author");

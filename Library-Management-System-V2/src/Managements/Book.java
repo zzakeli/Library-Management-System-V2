@@ -19,8 +19,8 @@ public class Book extends JPanel implements Functions {
     protected JButton deleteButton = new JButton("DELETE BOOK");
 
     protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton);
-    protected EditBookPanel editBookPanel = new EditBookPanel();
-    protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel();
+    protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, deleteButton);
+    protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton, deleteButton);
 
     public Book() {
         setLayout(null);

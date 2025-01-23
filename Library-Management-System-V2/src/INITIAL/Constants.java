@@ -18,4 +18,5 @@ public class Constants {
     public final static Color FORE_COLOR = new Color(0, 0, 0);
     public final static Color BACK_COLOR = new Color(183, 183, 183);
     public final static Font BUTTON_FONT = new Font("Dialog", Font.BOLD, 20);
+    public final static Font MEM_BUTTON_FONT = new Font("Dialog", Font.BOLD, 15);
 }
