@@ -3,9 +3,10 @@ package Main;
 import java.awt.*;
 import javax.swing.*;
 
-import Controls.*;
+import Controls.MainListener.*;
 import Initial.Constants;
-import Managements.*;
+
+import Managements.MainPanel.*;
 
 public class Sidebar extends JPanel {
 

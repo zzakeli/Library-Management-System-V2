@@ -1,9 +1,9 @@
-package Controls;
+package Controls.MainListener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import Managements.*;
+import Managements.MainPanel.*;
 
 public class StaffListener implements MouseListener {
 

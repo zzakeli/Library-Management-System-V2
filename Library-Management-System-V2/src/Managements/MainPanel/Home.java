@@ -1,4 +1,4 @@
-package Managements;
+package Managements.MainPanel;
 
 import java.awt.*;
 

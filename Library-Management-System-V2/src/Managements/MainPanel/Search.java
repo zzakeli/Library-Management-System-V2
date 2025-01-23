@@ -1,4 +1,4 @@
-package Managements;
+package Managements.MainPanel;
 
 import java.awt.*;
 
@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 
 import Initial.Constants;
 
-public class Staff extends JPanel {
+public class Search extends JPanel {
 
-    public Staff() {
+    public Search() {
         setBackground(new Color(58, 57, 96));
         setSize(Constants.MAIN_DIMENSIONS[0], Constants.MAIN_DIMENSIONS[1]);
         setLocation(100, 0);
@@ -18,7 +18,7 @@ public class Staff extends JPanel {
     }
 
     public void displayLabel() {
-        JLabel label = new JLabel("Staff");
+        JLabel label = new JLabel("Search");
         label.setFont(new Font("Dialog", Font.PLAIN, 50));
         add(label);
     }

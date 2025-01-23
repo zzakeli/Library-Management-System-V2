@@ -1,11 +1,11 @@
-package Controls;
+package Controls.MainListener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import Managements.*;
+import Managements.MainPanel.*;
 
-public class BookListener implements MouseListener {
+public class MemberListener implements MouseListener {
 
     Home home;
     Search search;
@@ -14,7 +14,7 @@ public class BookListener implements MouseListener {
     Member member;
     Staff staff;
 
-    public BookListener(Home home, Search search, Book book, Borrower borrower, Member member, Staff staff) {
+    public MemberListener(Home home, Search search, Book book, Borrower borrower, Member member, Staff staff) {
         this.home = home;
         this.search = search;
         this.book = book;
@@ -32,9 +32,9 @@ public class BookListener implements MouseListener {
     public void mousePressed(MouseEvent e) {
         home.setVisible(false);
         search.setVisible(false);
-        book.setVisible(true);
+        book.setVisible(false);
         borrower.setVisible(false);
-        member.setVisible(false);
+        member.setVisible(true);
         staff.setVisible(false);
     }
 

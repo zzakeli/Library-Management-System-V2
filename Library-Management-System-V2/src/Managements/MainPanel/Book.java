@@ -1,11 +1,10 @@
-package Managements;
+package Managements.MainPanel;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+// import javax.swing.table.DefaultTableModel;
 
 import Controls.BookButtonListener.*;
 import Functions.Functions;
@@ -131,8 +130,9 @@ public class Book extends JPanel implements Functions {
     }
 
     private void displayTable() {
-        final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
-        DefaultTableModel model = new DefaultTableModel();
+        // final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date
+        // Published", "Worth" };
+        // DefaultTableModel model = new DefaultTableModel();
         JTable bookTable = new JTable();
 
         bookTable.setFocusable(false);
