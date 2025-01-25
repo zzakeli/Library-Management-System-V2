@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.sql.SQLException;
 
 import javax.swing.*;
-// import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableModel;
 
 import Controls.ButtonListener.ButtonListener;
@@ -69,7 +68,7 @@ public class Book extends JPanel implements Functions {
     private void displayLabel() {
         JLabel bookSection = new JLabel("Book Section");
         bookSection.setSize(1280, 50);
-        bookSection.setLocation(275, 35);
+        bookSection.setLocation(270, 35);
         bookSection.setHorizontalAlignment(SwingConstants.CENTER);
         bookSection.setFont(new Font("Dialog", Font.BOLD, 50));
         add(bookSection);
@@ -134,39 +133,36 @@ public class Book extends JPanel implements Functions {
         add(deleteButton);
     }
 
-    protected final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
-    protected DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
-
     private void displayTable() {
+        final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
+        DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
 
         JTable bookTable = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(bookTable);
         bookTable.setFocusable(false);
-
         bookTable.getTableHeader().setResizingAllowed(false);
         bookTable.getTableHeader().setReorderingAllowed(false);
-        bookTable.getTableHeader().setBorder(BorderFactory.createLineBorder(
-                new Color(62, 50, 50)));
+        bookTable.getTableHeader().setFocusable(false);
         bookTable.getTableHeader()
-                .setBackground(new Color(126, 99, 99));
+                .setBackground(new Color(245, 245, 245));
+        bookTable.setFocusable(false);
         bookTable.getTableHeader()
-                .setForeground(new Color(228, 224, 225));
-        bookTable.getTableHeader().setFont(new Font("Dialog", Font.PLAIN, 20));
-        bookTable.setFont(new Font("Dialog", Font.PLAIN, 15));
-        bookTable.setBackground(new Color(146, 119, 119));
-        bookTable.setForeground(new Color(228, 224, 225));
+                .setForeground(Color.BLACK);
+        bookTable.getTableHeader().setFont(new Font("Dialog", Font.BOLD, 20));
+        bookTable.setFont(new Font("Dialog", Font.BOLD, 15));
+        bookTable.setBackground(new Color(210, 210, 210));
+        bookTable.setForeground(Color.BLACK);
         bookTable.setGridColor(new Color(62, 50, 50));
         bookTable.setShowGrid(true);
         bookTable.setCellSelectionEnabled(false);
         bookTable.setEnabled(false);
         bookTable.setRowHeight(40);
-        bookTable.setSize(1100, 540);
         bookTable.setLocation(40, 150);
         bookTable.setLayout(null);
-        scrollPane.setBounds(40, 150, 1100, 540);
+        scrollPane.setBounds(35, 125, 1100, 530);
         scrollPane.getViewport()
-                .setBackground(new Color(186, 159, 159));
-        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+                .setBackground(new Color(238, 238, 238));
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         add(scrollPane);
     }
 
@@ -176,7 +172,7 @@ public class Book extends JPanel implements Functions {
 
         try {
             connector.statement = connector.connect().createStatement();
-            connector.query = "SELECT * FROM book;";
+            connector.query = "SELECT * FROM book WHERE status = 'active';";
             connector.resultSet = connector.statement.executeQuery(connector.query);
 
             String[][] data = new String[rowCount][columnCount];
@@ -189,6 +185,7 @@ public class Book extends JPanel implements Functions {
             }
 
             connector.resultSet.close();
+            connector.statement.close();
 
             return data;
         } catch (SQLException e) {
@@ -200,7 +197,7 @@ public class Book extends JPanel implements Functions {
     protected int getNumData() {
         try {
             connector.statement = connector.connect().createStatement();
-            connector.query = "SELECT COUNT(*) AS num_of_book FROM book;";
+            connector.query = "SELECT COUNT(*) AS num_of_book FROM book WHERE status = 'active';";
             connector.resultSet = connector.statement.executeQuery(connector.query);
 
             int numData = 0;
@@ -209,6 +206,8 @@ public class Book extends JPanel implements Functions {
             }
 
             connector.resultSet.close();
+            connector.statement.close();
+
             return numData;
         } catch (SQLException e) {
             e.printStackTrace();
