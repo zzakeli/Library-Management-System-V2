@@ -7,12 +7,12 @@ import javax.swing.JTextField;
 
 import DatabaseConnection.Connector;
 
-public class SaveBookAction implements ActionListener {
+public class SaveAddBookAction implements ActionListener {
     Connector connector = new Connector();
 
     private JTextField titleField, authorField, datePublishedField, genreField, worthField;
 
-    public SaveBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
+    public SaveAddBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
             JTextField genreField, JTextField worthField) {
         this.titleField = titleField;
         this.authorField = authorField;

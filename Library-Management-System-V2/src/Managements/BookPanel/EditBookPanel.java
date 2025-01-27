@@ -9,6 +9,7 @@ import javax.swing.*;
 import Controls.FieldListener.FieldListener;
 import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
+import Managements.BookPanel.SaveAction.SaveEditBookAction;
 
 public class EditBookPanel extends JPanel {
 
@@ -129,6 +130,8 @@ public class EditBookPanel extends JPanel {
         saveButton.setFocusable(false);
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         saveButton.addMouseListener(new SubButtonListener(saveButton));
+        saveButton.addActionListener(
+                new SaveEditBookAction(titleField, authorField, datePublishedField, genreField, worthField));
         add(saveButton);
 
         addLabels();
