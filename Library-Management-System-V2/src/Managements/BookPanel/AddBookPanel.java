@@ -35,48 +35,6 @@ public class AddBookPanel extends JPanel {
     }
 
     private void constructPanel() {
-        JLabel closeButton = new JLabel();
-        closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
-        closeButton.setLocation(430, 15);
-        ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
-        Image closeImage = closeIcon.getImage();
-        Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
-                Image.SCALE_SMOOTH);
-        ImageIcon scaledClose = new ImageIcon(closeScale);
-        closeButton.setIcon(scaledClose);
-        closeButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                setVisible(false);
-                addButton.setEnabled(true);
-                editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-
-        });
-        add(closeButton);
-
         JTextField titleField = new JTextField();
         titleField.setSize(420, 40);
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -134,7 +92,68 @@ public class AddBookPanel extends JPanel {
                 new SaveAddBookAction(titleField, authorField, datePublishedField, genreField, worthField));
         add(saveButton);
 
+        JLabel closeButton = new JLabel();
+        closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
+        closeButton.setLocation(430, 15);
+        ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
+        Image closeImage = closeIcon.getImage();
+        Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
+                Image.SCALE_SMOOTH);
+        ImageIcon scaledClose = new ImageIcon(closeScale);
+        closeButton.setIcon(scaledClose);
+        closeButton.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                setVisible(false);
+                addButton.setEnabled(true);
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+                setDefault(titleField, authorField, datePublishedField, genreField,
+                        worthField);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+        add(closeButton);
+
         addLabels();
+    }
+
+    private void setDefault(JTextField titleField, JTextField authorField,
+            JTextField datePublishedField,
+            JTextField genreField, JTextField worthField) {
+
+        titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+        titleField.setText("");
+        authorField.setText("");
+        datePublishedField.setText("");
+        genreField.setText("");
+        worthField.setText("");
     }
 
     private void addLabels() {

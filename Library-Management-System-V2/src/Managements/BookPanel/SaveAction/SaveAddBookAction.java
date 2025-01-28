@@ -43,7 +43,7 @@ public class SaveAddBookAction implements ActionListener {
     }
 
     private boolean hasValidFields() {
-        setDefaultBorder();
+        setDefault();
         JTextField[] fields = { titleField, authorField, datePublishedField, genreField, worthField };
         boolean isValid = true;
         int pointCount = 0;
@@ -74,7 +74,7 @@ public class SaveAddBookAction implements ActionListener {
         return false;
     }
 
-    private void setDefaultBorder() {
+    private void setDefault() {
         titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
