@@ -1,8 +1,10 @@
 package Managements.BookPanel.SaveAction;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 import DatabaseConnection.Connector;
@@ -27,9 +29,7 @@ public class SaveAddBookAction implements ActionListener {
     }
 
     private void save() {
-        if (titleField.getText().isEmpty() || authorField.getText().isEmpty() || datePublishedField.getText().isEmpty()
-                || genreField.getText().isEmpty() || worthField.getText().isEmpty()) {
-            System.out.println("Fill out all of the blanks.");
+        if (!hasValidFields()) {
             return;
         }
 
@@ -40,6 +40,48 @@ public class SaveAddBookAction implements ActionListener {
         String worth = worthField.getText();
 
         saveBook(title, author, date, genre, worth);
+    }
+
+    private boolean hasValidFields() {
+        JTextField[] fields = { titleField, authorField, datePublishedField, genreField, worthField };
+        boolean isValid = true;
+        for (int i = 0; i < fields.length; i++) {
+            if (fields[i].getText().isEmpty()) {
+                isValid = changeFieldRed(fields[i]);
+                continue;
+            }
+            isValid = changeFieldBlack(fields[i]);
+        }
+
+        int pointCount = 0;
+        for (int i = 0; i < worthField.getText().length(); i++) {
+            if (worthField.getText().charAt(i) == '.') {
+                pointCount++;
+                if (pointCount > 1) {
+                    isValid = changeFieldRed(worthField);
+                    break;
+                }
+                continue;
+            }
+
+            if (!Character.isDigit(worthField.getText().charAt(i))) {
+                isValid = changeFieldRed(worthField);
+                break;
+            }
+
+        }
+
+        return isValid;
+    }
+
+    private boolean changeFieldRed(JTextField field) {
+        field.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+        return false;
+    }
+
+    private boolean changeFieldBlack(JTextField field) {
+        field.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+        return true;
     }
 
     private void saveBook(String title, String author, String date, String genre, String worth) {
