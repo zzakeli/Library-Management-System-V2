@@ -43,45 +43,43 @@ public class SaveAddBookAction implements ActionListener {
     }
 
     private boolean hasValidFields() {
+        setDefaultBorder();
         JTextField[] fields = { titleField, authorField, datePublishedField, genreField, worthField };
         boolean isValid = true;
+        int pointCount = 0;
         for (int i = 0; i < fields.length; i++) {
             if (fields[i].getText().isEmpty()) {
-                isValid = changeFieldRed(fields[i]);
-                continue;
+                isValid = changeBorderRed(fields[i]);
             }
-            isValid = changeFieldBlack(fields[i]);
         }
-
-        int pointCount = 0;
         for (int i = 0; i < worthField.getText().length(); i++) {
             if (worthField.getText().charAt(i) == '.') {
                 pointCount++;
                 if (pointCount > 1) {
-                    isValid = changeFieldRed(worthField);
+                    isValid = changeBorderRed(worthField);
                     break;
                 }
                 continue;
             }
-
             if (!Character.isDigit(worthField.getText().charAt(i))) {
-                isValid = changeFieldRed(worthField);
+                isValid = changeBorderRed(worthField);
                 break;
             }
-
         }
-
         return isValid;
     }
 
-    private boolean changeFieldRed(JTextField field) {
+    private boolean changeBorderRed(JTextField field) {
         field.setBorder(BorderFactory.createLineBorder(Color.red, 3));
         return false;
     }
 
-    private boolean changeFieldBlack(JTextField field) {
-        field.setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        return true;
+    private void setDefaultBorder() {
+        titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
     }
 
     private void saveBook(String title, String author, String date, String genre, String worth) {
