@@ -66,6 +66,81 @@ public class SaveAddBookAction implements ActionListener {
                 break;
             }
         }
+        int dateLength = 10;
+        if (datePublishedField.getText().length() != dateLength || datePublishedField.getText().charAt(4) != '-'
+                || datePublishedField.getText().charAt(7) != '-') {
+            System.out.println("Date invalid format.");
+            isValid = changeBorderRed(datePublishedField);
+
+            StringBuilder dateBuilder = new StringBuilder();
+            dateBuilder.setLength(0);
+            datePublishedField.getText().trim();
+            dateBuilder.append(datePublishedField.getText());
+            for (int i = 0; i < datePublishedField.getText().length(); i++) {
+                dateBuilder.append(" ");
+            }
+            datePublishedField.setText(dateBuilder.toString());
+        }
+
+        for (int i = 0; i < datePublishedField.getText().length(); i++) {
+            // 0-4,5-7,8-10
+            if (i == 4 || i == 7)
+                continue;
+
+            if (!Character.isDigit(datePublishedField.getText().charAt(i))) {
+                System.out.println("Date invalid format.");
+                isValid = changeBorderRed(datePublishedField);
+                break;
+            }
+        }
+        if (Character.isDigit(datePublishedField.getText().charAt(5))
+                && Character.isDigit(datePublishedField.getText().charAt(6))) {
+            EndingDay endingDay = EndingDay.THIRTY_ONE;
+            int month = Integer.parseInt(datePublishedField.getText().substring(5, 7));
+
+            if (month < 1 || month > 12) {
+                System.out.println("Month should be 1 to 12");
+                isValid = changeBorderRed(datePublishedField);
+            }
+
+            if (Character.isDigit(datePublishedField.getText().charAt(8))
+                    && Character.isDigit(datePublishedField.getText().charAt(9))) {
+                int day = Integer.parseInt(datePublishedField.getText().substring(8, 10));
+
+                switch (month) {
+                    case 1, 3, 5, 7, 8, 10, 12 -> {
+                        endingDay = EndingDay.THIRTY_ONE;
+                        break;
+                    }
+                    case 4, 6, 9, 11 -> {
+                        endingDay = EndingDay.THIRTY;
+                        break;
+                    }
+                    case 2 -> {
+                        endingDay = EndingDay.TWENTY_EIGHT;
+                        break;
+                    }
+                    default -> {
+                        System.out.println("Invalid Day");
+                        break;
+                    }
+                }
+
+                if (day > endingDay.getDay() || day < 1) {
+                    System.out.println("Invalid day.");
+                    isValid = changeBorderRed(datePublishedField);
+                }
+            }
+        }
+
+        for (int i = 0; i < authorField.getText().length(); i++) {
+            if (!Character.isAlphabetic(authorField.getText().charAt(i))) {
+                System.out.println("Author should not contain numbers and periods.");
+                isValid = changeBorderRed(authorField);
+                break;
+            }
+        }
+
         return isValid;
     }
 
@@ -123,6 +198,20 @@ public class SaveAddBookAction implements ActionListener {
 
         author = authorSB.toString();
         System.out.println(authorSB.toString());
+    }
+
+    private enum EndingDay {
+        TWENTY_EIGHT(28), THIRTY(30), THIRTY_ONE(31);
+
+        private int dayNum;
+
+        EndingDay(int dayNum) {
+            this.dayNum = dayNum;
+        }
+
+        public int getDay() {
+            return dayNum;
+        }
     }
 
 }
