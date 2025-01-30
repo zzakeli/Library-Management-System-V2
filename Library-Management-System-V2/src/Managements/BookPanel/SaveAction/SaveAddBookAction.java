@@ -3,6 +3,7 @@ package Managements.BookPanel.SaveAction;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -11,7 +12,6 @@ import DatabaseConnection.Connector;
 
 public class SaveAddBookAction implements ActionListener {
     Connector connector = new Connector();
-
     private JTextField titleField, authorField, datePublishedField, genreField, worthField;
 
     public SaveAddBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
@@ -66,10 +66,9 @@ public class SaveAddBookAction implements ActionListener {
                 break;
             }
         }
-        int dateLength = 10;
+        final int dateLength = 10;
         if (datePublishedField.getText().length() != dateLength || datePublishedField.getText().charAt(4) != '-'
                 || datePublishedField.getText().charAt(7) != '-') {
-            System.out.println("Date invalid format.");
             isValid = changeBorderRed(datePublishedField);
 
             StringBuilder dateBuilder = new StringBuilder();
@@ -88,7 +87,6 @@ public class SaveAddBookAction implements ActionListener {
                 continue;
 
             if (!Character.isDigit(datePublishedField.getText().charAt(i))) {
-                System.out.println("Date invalid format.");
                 isValid = changeBorderRed(datePublishedField);
                 break;
             }
@@ -99,7 +97,6 @@ public class SaveAddBookAction implements ActionListener {
             int month = Integer.parseInt(datePublishedField.getText().substring(5, 7));
 
             if (month < 1 || month > 12) {
-                System.out.println("Month should be 1 to 12");
                 isValid = changeBorderRed(datePublishedField);
             }
 
@@ -121,13 +118,12 @@ public class SaveAddBookAction implements ActionListener {
                         break;
                     }
                     default -> {
-                        System.out.println("Invalid Day");
+                        isValid = changeBorderRed(datePublishedField);
                         break;
                     }
                 }
 
                 if (day > endingDay.getDay() || day < 1) {
-                    System.out.println("Invalid day.");
                     isValid = changeBorderRed(datePublishedField);
                 }
             }
@@ -135,7 +131,6 @@ public class SaveAddBookAction implements ActionListener {
 
         for (int i = 0; i < authorField.getText().length(); i++) {
             if (!Character.isAlphabetic(authorField.getText().charAt(i))) {
-                System.out.println("Author should not contain numbers and periods.");
                 isValid = changeBorderRed(authorField);
                 break;
             }
@@ -158,12 +153,68 @@ public class SaveAddBookAction implements ActionListener {
     }
 
     private void saveBook(String title, String author, String date, String genre, String worth) {
+        String bookID = getBookID();
+        String titleData = getTitle(title);
+        String authorData = getAuthor(author);
+        String dateData = getDate(date);
+        String genreData = getGenre(genre);
+        String worthData = getWorth(worth);
+
+        try {
+            connector.statement = connector.connect().createStatement();
+            connector.query = "INSERT INTO book(book_id,title,author,genre,date_published,worth) VALUES('" + bookID
+                    + "','" + titleData + "','" + authorData + "','" + genreData + "','" + dateData + "'," + worthData
+                    + ")";
+            connector.statement.executeUpdate(connector.query);
+            connector.statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private String getBookID() {
+        String bookID = null;
+        StringBuilder createID = new StringBuilder("B");
+        try {
+            connector.statement = connector.connect().createStatement();
+            connector.query = "SELECT COUNT(book_id) AS bookID FROM book;";
+            connector.resultSet = connector.statement.executeQuery(connector.query);
+
+            int bookNum = 0;
+            while (connector.resultSet.next()) {
+                bookNum = Integer.parseInt(connector.resultSet.getString("bookID").toString());
+            }
+
+            switch (Integer.toString(bookNum).length()) {
+                case 1:
+                    createID.append("000");
+                    break;
+                case 2:
+                    createID.append("00");
+                    break;
+                case 3:
+                    createID.append("0");
+                    break;
+                default:
+                    break;
+            }
+            createID.append(Integer.toString(++bookNum));
+            bookID = createID.toString();
+
+            connector.statement.close();
+            connector.resultSet.close();
+
+            return bookID;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String getTitle(String title) {
         title = title.stripLeading().stripTrailing().toLowerCase();
         title = String.join("", Character.toString(title.charAt(0)).toUpperCase(), title.substring(1, title.length()));
-
-        author = author.stripLeading().stripTrailing().toLowerCase();
-        author = String.join("", Character.toString(author.charAt(0)).toUpperCase(),
-                author.substring(1, author.length()));
 
         StringBuilder titleSB = new StringBuilder();
 
@@ -180,7 +231,14 @@ public class SaveAddBookAction implements ActionListener {
         }
 
         title = titleSB.toString();
-        System.out.println(titleSB.toString());
+
+        return title;
+    }
+
+    private String getAuthor(String author) {
+        author = author.stripLeading().stripTrailing().toLowerCase();
+        author = String.join("", Character.toString(author.charAt(0)).toUpperCase(),
+                author.substring(1, author.length()));
 
         StringBuilder authorSB = new StringBuilder();
 
@@ -197,7 +255,21 @@ public class SaveAddBookAction implements ActionListener {
         }
 
         author = authorSB.toString();
-        System.out.println(authorSB.toString());
+
+        return author;
+    }
+
+    private String getDate(String date) {
+        date = date.trim();
+        return date;
+    }
+
+    private String getGenre(String genre) {
+        return genre;
+    }
+
+    private String getWorth(String worth) {
+        return worth;
     }
 
     private enum EndingDay {
@@ -205,7 +277,7 @@ public class SaveAddBookAction implements ActionListener {
 
         private int dayNum;
 
-        EndingDay(int dayNum) {
+        private EndingDay(int dayNum) {
             this.dayNum = dayNum;
         }
 

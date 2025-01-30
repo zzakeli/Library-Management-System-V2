@@ -13,9 +13,9 @@ import Managements.BookPanel.SaveAction.SaveAddBookAction;
 
 public class AddBookPanel extends JPanel {
 
-    JButton addButton;
-    JButton editButton;
-    JButton deleteButton;
+    private JButton addButton;
+    private JButton editButton;
+    private JButton deleteButton;
 
     public AddBookPanel(JButton addButton, JButton editButton, JButton deleteButton) {
         setLayout(null);
