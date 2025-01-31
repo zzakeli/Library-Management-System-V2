@@ -17,11 +17,15 @@ public class Book extends JPanel implements Functions {
 
     protected Connector connector = new Connector();
 
-    protected JButton addButton = new JButton("ADD BOOK");
-    protected JButton editButton = new JButton("EDIT BOOK");
-    protected JButton deleteButton = new JButton("DELETE BOOK");
+    private JButton addButton = new JButton("ADD BOOK");
+    private JButton editButton = new JButton("EDIT BOOK");
+    private JButton deleteButton = new JButton("DELETE BOOK");
 
-    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton);
+    private final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
+    private DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
+    JTable bookTable = new JTable(model);
+
+    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton, model, bookTable);
     protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, deleteButton);
     protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton, deleteButton);
 
@@ -134,10 +138,6 @@ public class Book extends JPanel implements Functions {
     }
 
     private void displayTable() {
-        final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
-        DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
-
-        JTable bookTable = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(bookTable);
         bookTable.setFocusable(false);
         bookTable.getTableHeader().setResizingAllowed(false);

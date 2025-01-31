@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import Controls.FieldListener.FieldListener;
 import Controls.SubButtonListener.SubButtonListener;
@@ -17,7 +18,11 @@ public class AddBookPanel extends JPanel {
     private JButton editButton;
     private JButton deleteButton;
 
-    public AddBookPanel(JButton addButton, JButton editButton, JButton deleteButton) {
+    private DefaultTableModel model;
+    private JTable bookTable;
+
+    public AddBookPanel(JButton addButton, JButton editButton, JButton deleteButton, DefaultTableModel model,
+            JTable bookTable) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
         setSize(480, 450);
@@ -25,6 +30,7 @@ public class AddBookPanel extends JPanel {
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
         initButtons(addButton, editButton, deleteButton);
+        initTable(model, bookTable);
         constructPanel();
     }
 
@@ -32,6 +38,11 @@ public class AddBookPanel extends JPanel {
         this.addButton = addButton;
         this.editButton = editButton;
         this.deleteButton = deleteButton;
+    }
+
+    private void initTable(DefaultTableModel model, JTable bookTable) {
+        this.bookTable = bookTable;
+        this.model = model;
     }
 
     private void constructPanel() {
@@ -89,7 +100,8 @@ public class AddBookPanel extends JPanel {
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         saveButton.addMouseListener(new SubButtonListener(saveButton));
         saveButton.addActionListener(
-                new SaveAddBookAction(titleField, authorField, datePublishedField, genreField, worthField));
+                new SaveAddBookAction(titleField, authorField, datePublishedField, genreField, worthField, this,
+                        addButton, editButton, deleteButton, model, bookTable));
         add(saveButton);
 
         JLabel closeButton = new JLabel();

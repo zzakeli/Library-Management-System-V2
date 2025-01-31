@@ -6,7 +6,11 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import DatabaseConnection.Connector;
 
@@ -14,13 +18,29 @@ public class SaveAddBookAction implements ActionListener {
     Connector connector = new Connector();
     private JTextField titleField, authorField, datePublishedField, genreField, worthField;
 
+    private JPanel addBookPanel;
+    private JButton addButton;
+    private JButton editButton;
+    private JButton deleteButton;
+
+    private final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
+    private DefaultTableModel model;
+    private JTable bookTable;
+
     public SaveAddBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
-            JTextField genreField, JTextField worthField) {
+            JTextField genreField, JTextField worthField, JPanel addBookPanel, JButton addButton, JButton editButton,
+            JButton deleteButton, DefaultTableModel model, JTable bookTable) {
         this.titleField = titleField;
         this.authorField = authorField;
         this.datePublishedField = datePublishedField;
         this.genreField = genreField;
         this.worthField = worthField;
+        this.addBookPanel = addBookPanel;
+        this.addButton = addButton;
+        this.editButton = editButton;
+        this.deleteButton = deleteButton;
+        this.model = model;
+        this.bookTable = bookTable;
     }
 
     @Override
@@ -40,6 +60,68 @@ public class SaveAddBookAction implements ActionListener {
         String worth = worthField.getText();
 
         saveBook(title, author, date, genre, worth);
+        addButton.setEnabled(true);
+        editButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+        addBookPanel.setVisible(false);
+
+        refresh();
+    }
+
+    // Problem -- can't refresh the JTable and its default model
+    // Should be resolved by February
+    private void refresh() {
+        model = new DefaultTableModel(dataTable(columnNames), columnNames);
+        bookTable = new JTable(model);
+    }
+
+    private String[][] dataTable(String[] columnNames) {
+        int rowCount = getNumData();
+        int columnCount = columnNames.length;
+
+        try {
+            connector.statement = connector.connect().createStatement();
+            connector.query = "SELECT * FROM book WHERE status = 'active';";
+            connector.resultSet = connector.statement.executeQuery(connector.query);
+
+            String[][] data = new String[rowCount][columnCount];
+            int i = 0;
+            while (connector.resultSet.next()) {
+                for (int j = 0; j < columnNames.length; j++) {
+                    data[i][j] = connector.resultSet.getString(j + 1).toString();
+                }
+                i++;
+            }
+
+            connector.resultSet.close();
+            connector.statement.close();
+
+            return data;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    protected int getNumData() {
+        try {
+            connector.statement = connector.connect().createStatement();
+            connector.query = "SELECT COUNT(*) AS num_of_book FROM book WHERE status = 'active';";
+            connector.resultSet = connector.statement.executeQuery(connector.query);
+
+            int numData = 0;
+            while (connector.resultSet.next()) {
+                numData = Integer.parseInt(connector.resultSet.getString(1));
+            }
+
+            connector.resultSet.close();
+            connector.statement.close();
+
+            return numData;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     private boolean hasValidFields() {
@@ -130,6 +212,8 @@ public class SaveAddBookAction implements ActionListener {
         }
 
         for (int i = 0; i < authorField.getText().length(); i++) {
+            if (authorField.getText().charAt(i) == ' ')
+                continue;
             if (!Character.isAlphabetic(authorField.getText().charAt(i))) {
                 isValid = changeBorderRed(authorField);
                 break;
@@ -185,6 +269,7 @@ public class SaveAddBookAction implements ActionListener {
             while (connector.resultSet.next()) {
                 bookNum = Integer.parseInt(connector.resultSet.getString("bookID").toString());
             }
+            bookNum++;
 
             switch (Integer.toString(bookNum).length()) {
                 case 1:
@@ -199,7 +284,7 @@ public class SaveAddBookAction implements ActionListener {
                 default:
                     break;
             }
-            createID.append(Integer.toString(++bookNum));
+            createID.append(Integer.toString(bookNum));
             bookID = createID.toString();
 
             connector.statement.close();
