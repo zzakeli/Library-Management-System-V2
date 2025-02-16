@@ -8,7 +8,7 @@ public class MainWindow extends JFrame {
 
     Sidebar sidebar = new Sidebar(this);
 
-    MainWindow() {
+    public MainWindow() {
         super(Constants.TITLE);
         setLayout(null);
         setSize(Constants.WINDOW_DIMENSIONS[0], Constants.WINDOW_DIMENSIONS[1]);

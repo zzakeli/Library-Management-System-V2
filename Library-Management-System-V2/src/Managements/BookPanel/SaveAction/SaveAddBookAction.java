@@ -68,11 +68,9 @@ public class SaveAddBookAction implements ActionListener {
         refresh();
     }
 
-    // Problem -- can't refresh the JTable and its default model
-    // Should be resolved by February
     private void refresh() {
         model = new DefaultTableModel(dataTable(columnNames), columnNames);
-        bookTable = new JTable(model);
+        bookTable.setModel(model);
     }
 
     private String[][] dataTable(String[] columnNames) {
