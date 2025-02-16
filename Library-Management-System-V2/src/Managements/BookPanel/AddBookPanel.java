@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Controls.FieldListener.FieldListener;
+import Controls.FieldListener.GenreFieldListener;
 import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
 import Managements.BookPanel.SaveAction.SaveAddBookAction;
@@ -17,6 +18,7 @@ public class AddBookPanel extends JPanel {
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
+    private JPanel selection = new JPanel();
 
     private DefaultTableModel model;
     private JTable bookTable;
@@ -79,8 +81,10 @@ public class AddBookPanel extends JPanel {
         genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         genreField.setBackground(Constants.MAIN_COLOR);
         genreField.setLocation(29, 230);
-        genreField.addMouseListener(new FieldListener(genreField));
+        genreField.addMouseListener(new GenreFieldListener(genreField, this));
         add(genreField);
+
+        createGenreSelection();
 
         JTextField worthField = new JTextField();
         worthField.setSize(200, 40);
@@ -149,6 +153,22 @@ public class AddBookPanel extends JPanel {
         add(closeButton);
 
         addLabels();
+    }
+
+    private void createGenreSelection() {
+        selection.setSize(200, 150);
+        selection.setLayout(null);
+        selection.setLocation(29, 270);
+        selection.setVisible(false);
+        add(selection);
+    }
+
+    public void showGenreSelection() {
+        selection.setVisible(true);
+    }
+
+    public void hideGenreSelection() {
+        selection.setVisible(false);
     }
 
     private void setDefault(JTextField titleField, JTextField authorField,
