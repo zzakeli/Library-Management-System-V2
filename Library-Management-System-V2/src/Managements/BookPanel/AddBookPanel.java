@@ -160,6 +160,34 @@ public class AddBookPanel extends JPanel {
         selection.setLayout(null);
         selection.setLocation(29, 270);
         selection.setVisible(false);
+        selection.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                selection.setVisible(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                selection.setVisible(false);
+            }
+
+        });
         add(selection);
     }
 
