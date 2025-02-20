@@ -19,6 +19,7 @@ public class AddBookPanel extends JPanel {
     private JButton editButton;
     private JButton deleteButton;
     private JPanel selection = new JPanel();
+    private JScrollPane scrollPane = new JScrollPane(selection);
 
     private DefaultTableModel model;
     private JTable bookTable;
@@ -156,10 +157,10 @@ public class AddBookPanel extends JPanel {
     }
 
     private void createGenreSelection() {
-        selection.setSize(200, 150);
+        scrollPane.setVisible(false);
+        selection.setPreferredSize(new Dimension(200, 240));
         selection.setLayout(null);
-        selection.setLocation(29, 270);
-        selection.setVisible(false);
+        selection.setLocation(0, 0);
         selection.addMouseListener(new MouseListener() {
 
             @Override
@@ -179,24 +180,63 @@ public class AddBookPanel extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                selection.setVisible(true);
+                scrollPane.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                selection.setVisible(false);
+                scrollPane.setVisible(false);
             }
 
         });
-        add(selection);
+        scrollPane.setBounds(29, 270, 200, 150);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        addGenre();
+        add(scrollPane);
+    }
+
+    private void addGenre() {
+        String[] genres = { "Novel",
+                "Mystery",
+                "Non-fiction",
+                "Narrative",
+                "Science fiction",
+                "Thriller",
+                "Adventure",
+                "True Crime",
+                "Self-help book",
+                "Fantasy",
+                "Literary",
+                "Romance" };
+
+        int yLoc = 0;
+        for (int i = 0; i < 12; i++) {
+            JPanel genreBox = new JPanel();
+            JLabel genre = new JLabel(genres[i]);
+
+            genreBox.setSize(200, 20);
+            genreBox.setLocation(0, yLoc);
+            genreBox.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            genreBox.setLayout(null);
+
+            yLoc += 20;
+
+            genre.setFont(new Font("Dialog", Font.BOLD, 14));
+            genre.setSize(200, 20);
+            genre.setLocation(5, -2);
+
+            genreBox.add(genre);
+            selection.add(genreBox);
+        }
     }
 
     public void showGenreSelection() {
-        selection.setVisible(true);
+        scrollPane.setVisible(true);
     }
 
     public void hideGenreSelection() {
-        selection.setVisible(false);
+        scrollPane.setVisible(false);
     }
 
     private void setDefault(JTextField titleField, JTextField authorField,
