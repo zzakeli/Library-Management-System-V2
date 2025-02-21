@@ -80,12 +80,16 @@ public class AddBookPanel extends JPanel {
         genreField.setSize(200, 40);
         genreField.setFont(new Font("Dialog", Font.PLAIN, 15));
         genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        genreField.setForeground(Color.BLACK);
         genreField.setBackground(Constants.MAIN_COLOR);
         genreField.setLocation(29, 230);
+        genreField.setEnabled(false);
+        genreField.setDisabledTextColor(Color.BLACK);
+        genreField.setFocusable(false);
         genreField.addMouseListener(new GenreFieldListener(genreField, this));
         add(genreField);
 
-        createGenreSelection();
+        createGenreSelection(genreField);
 
         JTextField worthField = new JTextField();
         worthField.setSize(200, 40);
@@ -156,7 +160,7 @@ public class AddBookPanel extends JPanel {
         addLabels();
     }
 
-    private void createGenreSelection() {
+    private void createGenreSelection(JTextField genreField) {
         scrollPane.setVisible(false);
         selection.setPreferredSize(new Dimension(200, 240));
         selection.setLayout(null);
@@ -189,14 +193,14 @@ public class AddBookPanel extends JPanel {
             }
 
         });
-        scrollPane.setBounds(29, 270, 200, 150);
+        scrollPane.setBounds(29, 269, 200, 150);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        addGenre();
+        addGenre(scrollPane, genreField);
         add(scrollPane);
     }
 
-    private void addGenre() {
+    private void addGenre(JScrollPane scrollPane, JTextField genreField) {
         String[] genres = { "Novel",
                 "Mystery",
                 "Non-fiction",
@@ -215,16 +219,48 @@ public class AddBookPanel extends JPanel {
             JPanel genreBox = new JPanel();
             JLabel genre = new JLabel(genres[i]);
 
+            genre.setFont(new Font("Dialog", Font.BOLD, 14));
+            genre.setSize(200, 20);
+            genre.setLocation(5, -2);
+
             genreBox.setSize(200, 20);
+            genreBox.setBackground(Color.WHITE);
             genreBox.setLocation(0, yLoc);
             genreBox.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             genreBox.setLayout(null);
 
-            yLoc += 20;
+            genre.addMouseListener(new MouseListener() {
 
-            genre.setFont(new Font("Dialog", Font.BOLD, 14));
-            genre.setSize(200, 20);
-            genre.setLocation(5, -2);
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    genreField.setText(genre.getText());
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    scrollPane.setVisible(true);
+                    genreBox.setBackground(Color.GRAY);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    scrollPane.setVisible(false);
+                    genreBox.setBackground(Color.WHITE);
+                }
+
+            });
+
+            yLoc += 20;
 
             genreBox.add(genre);
             selection.add(genreBox);

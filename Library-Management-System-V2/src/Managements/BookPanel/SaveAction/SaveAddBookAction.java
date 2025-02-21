@@ -171,6 +171,21 @@ public class SaveAddBookAction implements ActionListener {
                 break;
             }
         }
+
+        for (int i = 0; i < authorField.getText().length(); i++) {
+            if (authorField.getText().charAt(i) == ' ')
+                continue;
+            if (!Character.isAlphabetic(authorField.getText().charAt(i))) {
+                isValid = changeBorderRed(authorField);
+                break;
+            }
+        }
+
+        if (datePublishedField.getText().equals("")) {
+            isValid = changeBorderRed(datePublishedField);
+            return isValid;
+        }
+
         if (Character.isDigit(datePublishedField.getText().charAt(5))
                 && Character.isDigit(datePublishedField.getText().charAt(6))) {
             EndingDay endingDay = EndingDay.THIRTY_ONE;
@@ -206,15 +221,6 @@ public class SaveAddBookAction implements ActionListener {
                 if (day > endingDay.getDay() || day < 1) {
                     isValid = changeBorderRed(datePublishedField);
                 }
-            }
-        }
-
-        for (int i = 0; i < authorField.getText().length(); i++) {
-            if (authorField.getText().charAt(i) == ' ')
-                continue;
-            if (!Character.isAlphabetic(authorField.getText().charAt(i))) {
-                isValid = changeBorderRed(authorField);
-                break;
             }
         }
 
