@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,7 @@ public class SaveAddBookAction implements ActionListener {
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
+    private JScrollPane scrollPane;
 
     private final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
     private DefaultTableModel model;
@@ -29,7 +31,7 @@ public class SaveAddBookAction implements ActionListener {
 
     public SaveAddBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
             JTextField genreField, JTextField worthField, JPanel addBookPanel, JButton addButton, JButton editButton,
-            JButton deleteButton, DefaultTableModel model, JTable bookTable) {
+            JButton deleteButton, DefaultTableModel model, JTable bookTable, JScrollPane scrollPane) {
         this.titleField = titleField;
         this.authorField = authorField;
         this.datePublishedField = datePublishedField;
@@ -41,6 +43,7 @@ public class SaveAddBookAction implements ActionListener {
         this.deleteButton = deleteButton;
         this.model = model;
         this.bookTable = bookTable;
+        this.scrollPane = scrollPane;
     }
 
     @Override
@@ -63,6 +66,7 @@ public class SaveAddBookAction implements ActionListener {
         addButton.setEnabled(true);
         editButton.setEnabled(true);
         deleteButton.setEnabled(true);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         addBookPanel.setVisible(false);
 
         refresh();

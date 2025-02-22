@@ -23,9 +23,11 @@ public class Book extends JPanel implements Functions {
 
     private final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
     private DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
-    JTable bookTable = new JTable(model);
+    private JTable bookTable = new JTable(model);
+    private JScrollPane scrollPane = new JScrollPane(bookTable);
 
-    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton, model, bookTable);
+    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton, model, bookTable,
+            scrollPane);
     protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, deleteButton);
     protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton, deleteButton);
 
@@ -48,25 +50,26 @@ public class Book extends JPanel implements Functions {
     @Override
     public void add() {
         addBookPanel.setVisible(true);
-        addButton.setEnabled(false);
-        editButton.setEnabled(false);
-        deleteButton.setEnabled(false);
+        setButtonEnabled(false);
     }
 
     @Override
     public void edit() {
         editBookPanel.setVisible(true);
-        addButton.setEnabled(false);
-        editButton.setEnabled(false);
-        deleteButton.setEnabled(false);
+        setButtonEnabled(false);
     }
 
     @Override
     public void delete() {
         deleteBookPanel.setVisible(true);
-        addButton.setEnabled(false);
-        editButton.setEnabled(false);
-        deleteButton.setEnabled(false);
+        setButtonEnabled(false);
+    }
+
+    private void setButtonEnabled(boolean isEnabled) {
+        addButton.setEnabled(isEnabled);
+        editButton.setEnabled(isEnabled);
+        deleteButton.setEnabled(isEnabled);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     }
 
     private void displayLabel() {
@@ -138,7 +141,6 @@ public class Book extends JPanel implements Functions {
     }
 
     private void displayTable() {
-        JScrollPane scrollPane = new JScrollPane(bookTable);
         bookTable.setFocusable(false);
         bookTable.getTableHeader().setResizingAllowed(false);
         bookTable.getTableHeader().setReorderingAllowed(false);
