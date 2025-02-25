@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Controls.FieldListener.FieldListener;
+import Controls.FieldListener.GenreFieldListener;
 import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
 import Managements.BookPanel.SaveAction.SaveEditBookAction;
@@ -49,49 +50,6 @@ public class EditBookPanel extends JPanel {
     }
 
     private void constructPanel() {
-        JLabel closeButton = new JLabel();
-        closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
-        closeButton.setLocation(430, 15);
-        ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
-        Image closeImage = closeIcon.getImage();
-        Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
-                Image.SCALE_SMOOTH);
-        ImageIcon scaledClose = new ImageIcon(closeScale);
-        closeButton.setIcon(scaledClose);
-        closeButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                setVisible(false);
-                addButton.setEnabled(true);
-                editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
-                tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-
-        });
-        add(closeButton);
-
         JTextField titleField = new JTextField();
         titleField.setSize(420, 40);
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -125,8 +83,12 @@ public class EditBookPanel extends JPanel {
         genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         genreField.setBackground(Constants.MAIN_COLOR);
         genreField.setLocation(29, 230);
-        genreField.addMouseListener(new FieldListener(genreField));
+        genreField.setEnabled(false);
+        genreField.setDisabledTextColor(Color.BLACK);
+        genreField.addMouseListener(new GenreFieldListener(genreField, this));
         add(genreField);
+
+        createGenreSelection(genreField);
 
         JTextField worthField = new JTextField();
         worthField.setSize(200, 40);
@@ -149,6 +111,50 @@ public class EditBookPanel extends JPanel {
                 new SaveEditBookAction(titleField, authorField, datePublishedField, genreField, worthField, this,
                         addButton, editButton, deleteButton, model, bookTable, scrollPane));
         add(saveButton);
+
+        JLabel closeButton = new JLabel();
+        closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
+        closeButton.setLocation(430, 15);
+        ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
+        Image closeImage = closeIcon.getImage();
+        Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
+                Image.SCALE_SMOOTH);
+        ImageIcon scaledClose = new ImageIcon(closeScale);
+        closeButton.setIcon(scaledClose);
+        closeButton.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                setVisible(false);
+                addButton.setEnabled(true);
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+                tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                setDefault(titleField, authorField, datePublishedField, genreField, worthField);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+        add(closeButton);
 
         addLabels();
     }
@@ -183,6 +189,138 @@ public class EditBookPanel extends JPanel {
         worthLabel.setSize(200, 30);
         worthLabel.setLocation(249, 200);
         add(worthLabel);
+    }
+
+    private void createGenreSelection(JTextField genreField) {
+        scrollPane.setVisible(false);
+        selection.setPreferredSize(new Dimension(200, 240));
+        selection.setLayout(null);
+        selection.setLocation(0, 0);
+        selection.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                scrollPane.setVisible(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                scrollPane.setVisible(false);
+            }
+
+        });
+        scrollPane.setBounds(29, 269, 200, 150);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        addGenre(scrollPane, genreField);
+        add(scrollPane);
+    }
+
+    private void addGenre(JScrollPane scrollPane, JTextField genreField) {
+        String[] genres = { "Novel",
+                "Mystery",
+                "Non-fiction",
+                "Narrative",
+                "Science fiction",
+                "Thriller",
+                "Adventure",
+                "True Crime",
+                "Self-help book",
+                "Fantasy",
+                "Literary",
+                "Romance" };
+
+        int yLoc = 0;
+        for (int i = 0; i < genres.length; i++) {
+            JPanel genreBox = new JPanel();
+            JLabel genre = new JLabel(genres[i]);
+
+            genre.setFont(new Font("Dialog", Font.BOLD, 14));
+            genre.setSize(200, 20);
+            genre.setLocation(5, -2);
+
+            genreBox.setSize(200, 20);
+            genreBox.setBackground(Color.WHITE);
+            genreBox.setLocation(0, yLoc);
+            genreBox.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            genreBox.setLayout(null);
+
+            genre.addMouseListener(new MouseListener() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    genreField.setText(genre.getText());
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    scrollPane.setVisible(true);
+                    genreBox.setBackground(Color.GRAY);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    scrollPane.setVisible(false);
+                    genreBox.setBackground(Color.WHITE);
+                }
+
+            });
+
+            yLoc += 20;
+
+            genreBox.add(genre);
+            selection.add(genreBox);
+        }
+    }
+
+    public void showGenreSelection() {
+        scrollPane.setVisible(true);
+    }
+
+    public void hideGenreSelection() {
+        scrollPane.setVisible(false);
+    }
+
+    private void setDefault(JTextField titleField, JTextField authorField,
+            JTextField datePublishedField,
+            JTextField genreField, JTextField worthField) {
+
+        titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+        titleField.setText("");
+        authorField.setText("");
+        datePublishedField.setText("");
+        genreField.setText("");
+        worthField.setText("");
     }
 
 }

@@ -6,15 +6,25 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 
 import Managements.BookPanel.AddBookPanel;
+import Managements.BookPanel.EditBookPanel;
 
 public class GenreFieldListener implements MouseListener {
 
     JTextField field;
     AddBookPanel addBookPanel;
+    EditBookPanel editBookPanel;
+    int x = 0;
 
     public GenreFieldListener(JTextField field, AddBookPanel addBookPanel) {
         this.field = field;
         this.addBookPanel = addBookPanel;
+        x = 0;
+    }
+
+    public GenreFieldListener(JTextField field, EditBookPanel editBookPanel) {
+        this.field = field;
+        this.editBookPanel = editBookPanel;
+        x = 1;
     }
 
     @Override
@@ -34,12 +44,21 @@ public class GenreFieldListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        addBookPanel.showGenreSelection();
+        if (x == 0) {
+            addBookPanel.showGenreSelection();
+            return;
+        }
+        editBookPanel.showGenreSelection();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        addBookPanel.hideGenreSelection();
+        if (x == 0) {
+            addBookPanel.hideGenreSelection();
+            return;
+        }
+        editBookPanel.hideGenreSelection();
+
     }
 
 }
