@@ -30,6 +30,7 @@ public class Book extends JPanel implements Functions {
             scrollPane);
     protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, deleteButton, model, bookTable,
             scrollPane);
+    protected SearchPanel searchPanel = new SearchPanel(editBookPanel, addButton, editButton, deleteButton, scrollPane);
     protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton, deleteButton);
 
     public Book() {
@@ -40,7 +41,7 @@ public class Book extends JPanel implements Functions {
         setVisible(false);
 
         add(addBookPanel);
-        add(editBookPanel);
+        add(searchPanel);
         add(deleteBookPanel);
 
         displayLabel();
@@ -56,7 +57,7 @@ public class Book extends JPanel implements Functions {
 
     @Override
     public void edit() {
-        editBookPanel.setVisible(true);
+        searchPanel.setVisible(true);
         setButtonEnabled(false);
     }
 
