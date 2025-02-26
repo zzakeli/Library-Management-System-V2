@@ -1,11 +1,14 @@
 package Managements.BookPanel;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,11 +28,11 @@ public class SearchPanel extends JPanel {
             JScrollPane tableScrollPane) {
         this.editBookPanel = editBookPanel;
         this.tableScrollPane = tableScrollPane;
-
+        setBorder(BorderFactory.createLineBorder(Color.black, 3));
         setLayout(null);
         setSize(300, 200);
         setBackground(Constants.BACK_COLOR);
-        setLocation(320, 110);
+        setLocation(420, 240);
         setVisible(false);
         initComps();
         initButtons(addButton, editButton, deleteButton);
@@ -43,12 +46,19 @@ public class SearchPanel extends JPanel {
 
     private void initComps() {
         JTextField searchField = new JTextField();
-        searchField.setSize(150, 50);
-        searchField.setLocation(0, 0);
+        searchField.setSize(200, 40);
+        searchField.setLocation(50, 50);
+        searchField.setFont(new Font("Dialog", Font.BOLD, 20));
+        searchField.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 
         JButton searchButton = new JButton("Search");
-        searchButton.setSize(100, 50);
-        searchButton.setLocation(0, 50);
+        searchButton.setSize(100, 40);
+        searchButton.setLocation(100, 120);
+        searchButton.setFocusable(false);
+        searchButton.setFont(new Font("Dialog", Font.BOLD, 15));
+        searchButton.setForeground(Constants.FORE_COLOR);
+        searchButton.setBackground(Constants.MAIN_COLOR);
+        searchButton.setBorder(BorderFactory.createLineBorder(Color.black, 3));
         searchButton.addActionListener(new ActionListener() {
 
             @Override
@@ -66,7 +76,7 @@ public class SearchPanel extends JPanel {
 
         JLabel closeButton = new JLabel();
         closeButton.setSize(Constants.CLOSE_SIZE, Constants.CLOSE_SIZE);
-        closeButton.setLocation(200, 15);
+        closeButton.setLocation(260, 10);
         ImageIcon closeIcon = new ImageIcon("Library-Management-System-V2/src/Icons/close.png");
         Image closeImage = closeIcon.getImage();
         Image closeScale = closeImage.getScaledInstance(closeButton.getWidth(), closeButton.getHeight(),
@@ -87,6 +97,7 @@ public class SearchPanel extends JPanel {
                 editButton.setEnabled(true);
                 deleteButton.setEnabled(true);
                 tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                searchField.setText("");
             }
 
             @Override

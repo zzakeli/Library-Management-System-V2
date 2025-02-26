@@ -88,7 +88,6 @@ public class Book extends JPanel implements Functions {
         addButton.setFont(Constants.BUTTON_FONT);
         addButton.setForeground(Constants.FORE_COLOR);
         addButton.setBackground(Constants.BACK_COLOR);
-        addButton.setFocusable(false);
         addButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         addButton.setSize(180, 70);
         addButton.setLocation(70, 30);
