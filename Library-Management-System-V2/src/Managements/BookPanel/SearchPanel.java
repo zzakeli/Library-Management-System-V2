@@ -18,7 +18,12 @@ import javax.swing.JTextField;
 
 import Initial.Constants;
 
+import java.sql.SQLException;
+import DatabaseConnection.Connector;
+
 public class SearchPanel extends JPanel {
+
+    private Connector connector = new Connector();
 
     private EditBookPanel editBookPanel;
     private JButton addButton, editButton, deleteButton;
@@ -63,7 +68,7 @@ public class SearchPanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (accountExist()) {
+                if (accountExist(searchField)) {
                     // Run code here that shows the main Edit Panel
                     setVisible(false);
                     editBookPanel.setVisible(true);
@@ -121,9 +126,21 @@ public class SearchPanel extends JPanel {
         add(searchField);
     }
 
-    private boolean accountExist() {
-        // Database manipulation code here
+    private boolean accountExist(JTextField searchField) {
+        try {
+            connector.statement = connector.connect().createStatement();
+            connector.query = "SELECT book_id AS 'book id', title, author, genre, date_published AS 'date published', worth, status FROM book;";
+            connector.resultSet = connector.statement.executeQuery(connector.query);
 
+            while (connector.resultSet.next()) {
+                if (connector.resultSet.getString("book id").toString().equals(searchField.getText())) {
+                    System.out.println("Account Exists.");
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("program error.");
+        }
         return false;
     }
 }
