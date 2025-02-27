@@ -123,6 +123,7 @@ public class SearchPanel extends JPanel {
         });
         add(closeButton);
         add(searchButton);
+
         add(searchField);
     }
 
