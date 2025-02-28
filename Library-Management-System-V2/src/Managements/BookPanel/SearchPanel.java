@@ -103,6 +103,7 @@ public class SearchPanel extends JPanel {
                 deleteButton.setEnabled(true);
                 tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
                 searchField.setText("");
+
             }
 
             @Override
@@ -123,7 +124,6 @@ public class SearchPanel extends JPanel {
         });
         add(closeButton);
         add(searchButton);
-
         add(searchField);
     }
 
