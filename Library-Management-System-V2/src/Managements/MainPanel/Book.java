@@ -41,6 +41,7 @@ public class Book extends JPanel implements Functions {
         setVisible(false);
 
         add(addBookPanel);
+        add(editBookPanel);
         add(searchPanel);
         add(deleteBookPanel);
 

@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 
 import Initial.Constants;
 
-import java.sql.SQLException;
 import DatabaseConnection.Connector;
 
 public class SearchPanel extends JPanel {
@@ -49,6 +48,12 @@ public class SearchPanel extends JPanel {
         this.deleteButton = deleteButton;
     }
 
+    private void enableButtons(boolean isEnabled) {
+        addButton.setEnabled(isEnabled);
+        editButton.setEnabled(isEnabled);
+        deleteButton.setEnabled(isEnabled);
+    }
+
     private void initComps() {
         JTextField searchField = new JTextField();
         searchField.setSize(200, 40);
@@ -70,7 +75,9 @@ public class SearchPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (accountExist(searchField)) {
                     // Run code here that shows the main Edit Panel
+                    searchField.setText("");
                     setVisible(false);
+                    enableButtons(true);
                     editBookPanel.setVisible(true);
                     return;
                 }
