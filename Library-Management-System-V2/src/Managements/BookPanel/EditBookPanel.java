@@ -24,6 +24,7 @@ public class EditBookPanel extends JPanel {
     private JScrollPane scrollPane = new JScrollPane(selection);
     private JScrollPane tableScrollPane;
 
+    public JLabel bookID = new JLabel();
     protected JTextField titleField = new JTextField();
     protected JTextField authorField = new JTextField();
     protected JTextField datePublishedField = new JTextField();
@@ -57,6 +58,10 @@ public class EditBookPanel extends JPanel {
     }
 
     private void constructPanel() {
+        bookID.setSize(50, 50);
+        bookID.setLocation(0, 0);
+        add(bookID);
+
         titleField.setSize(420, 40);
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));
         titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));

@@ -31,6 +31,8 @@ public class Book extends JPanel implements Functions {
     protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, deleteButton, model, bookTable,
             scrollPane);
     protected SearchPanel searchPanel = new SearchPanel(editBookPanel, addButton, editButton, deleteButton, scrollPane);
+
+    // REMOVE DELETE FUNCTION -- NO NEED TO ADD SINCE STATUS HANDLES IT
     protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton, deleteButton);
 
     public Book() {

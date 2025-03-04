@@ -7,19 +7,19 @@ import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import DatabaseConnection.Connector;
+import Managements.BookPanel.EditBookPanel;
 
 public class SaveEditBookAction implements ActionListener {
     Connector connector = new Connector();
     private JTextField titleField, authorField, datePublishedField, genreField, worthField;
     private JButton activeButton;
-    private JPanel editBookPanel;
+    private EditBookPanel editBookPanel;
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
@@ -30,7 +30,8 @@ public class SaveEditBookAction implements ActionListener {
     private JTable bookTable;
 
     public SaveEditBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
-            JTextField genreField, JTextField worthField, JPanel editBookPanel, JButton addButton, JButton editButton,
+            JTextField genreField, JTextField worthField, EditBookPanel editBookPanel, JButton addButton,
+            JButton editButton,
             JButton deleteButton, DefaultTableModel model, JTable bookTable, JScrollPane scrollPane,
             JButton activeButton) {
         this.titleField = titleField;
@@ -248,14 +249,14 @@ public class SaveEditBookAction implements ActionListener {
     }
 
     private void saveBook(String title, String author, String date, String genre, String worth, String status) {
-        String bookID = getBookID();
+        String bookID = editBookPanel.bookID.getText();
         String titleData = getTitle(title);
         String authorData = getAuthor(author);
         String dateData = getDate(date);
         String genreData = getGenre(genre);
         String worthData = getWorth(worth);
         String statusData = getStatus(status);
-
+        System.out.println(bookID);
         try {
             connector.statement = connector.connect().createStatement();
             connector.query = "UPDATE book SET title = '" + titleData
@@ -267,46 +268,6 @@ public class SaveEditBookAction implements ActionListener {
             e.printStackTrace();
         }
 
-    }
-
-    private String getBookID() {
-        String bookID = null;
-        StringBuilder createID = new StringBuilder("B");
-        try {
-            connector.statement = connector.connect().createStatement();
-            connector.query = "SELECT COUNT(book_id) AS bookID FROM book;";
-            connector.resultSet = connector.statement.executeQuery(connector.query);
-
-            int bookNum = 0;
-            while (connector.resultSet.next()) {
-                bookNum = Integer.parseInt(connector.resultSet.getString("bookID").toString());
-            }
-            bookNum++;
-
-            switch (Integer.toString(bookNum).length()) {
-                case 1:
-                    createID.append("000");
-                    break;
-                case 2:
-                    createID.append("00");
-                    break;
-                case 3:
-                    createID.append("0");
-                    break;
-                default:
-                    break;
-            }
-            createID.append(Integer.toString(bookNum));
-            bookID = createID.toString();
-
-            connector.statement.close();
-            connector.resultSet.close();
-
-            return bookID;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private String getTitle(String title) {

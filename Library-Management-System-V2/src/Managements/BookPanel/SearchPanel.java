@@ -81,6 +81,7 @@ public class SearchPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (accountExist(searchField)) {
                     // Run code here that showss the main Edit Panel
+                    editBookPanel.bookID.setText(searchField.getText());
                     searchField.setText("");
                     setVisible(false);
                     enableButtons(true);
