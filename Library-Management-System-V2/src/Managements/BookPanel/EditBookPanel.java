@@ -24,6 +24,12 @@ public class EditBookPanel extends JPanel {
     private JScrollPane scrollPane = new JScrollPane(selection);
     private JScrollPane tableScrollPane;
 
+    protected JTextField titleField = new JTextField();
+    protected JTextField authorField = new JTextField();
+    protected JTextField datePublishedField = new JTextField();
+    protected JTextField genreField = new JTextField();
+    protected JTextField worthField = new JTextField();
+
     public EditBookPanel(JButton addButton, JButton editButton, JButton deleteButton, DefaultTableModel model,
             JTable bookTable, JScrollPane tableScrollPane) {
         setLayout(null);
@@ -50,7 +56,6 @@ public class EditBookPanel extends JPanel {
     }
 
     private void constructPanel() {
-        JTextField titleField = new JTextField();
         titleField.setSize(420, 40);
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));
         titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -59,7 +64,6 @@ public class EditBookPanel extends JPanel {
         titleField.addMouseListener(new FieldListener(titleField));
         add(titleField);
 
-        JTextField authorField = new JTextField();
         authorField.setSize(200, 40);
         authorField.setFont(new Font("Dialog", Font.PLAIN, 15));
         authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -68,7 +72,6 @@ public class EditBookPanel extends JPanel {
         authorField.addMouseListener(new FieldListener(authorField));
         add(authorField);
 
-        JTextField datePublishedField = new JTextField();
         datePublishedField.setSize(200, 40);
         datePublishedField.setFont(new Font("Dialog", Font.PLAIN, 15));
         datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -77,7 +80,6 @@ public class EditBookPanel extends JPanel {
         datePublishedField.addMouseListener(new FieldListener(datePublishedField));
         add(datePublishedField);
 
-        JTextField genreField = new JTextField();
         genreField.setSize(200, 40);
         genreField.setFont(new Font("Dialog", Font.PLAIN, 15));
         genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -90,7 +92,6 @@ public class EditBookPanel extends JPanel {
 
         createGenreSelection(genreField);
 
-        JTextField worthField = new JTextField();
         worthField.setSize(200, 40);
         worthField.setFont(new Font("Dialog", Font.PLAIN, 15));
         worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));

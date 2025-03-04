@@ -28,6 +28,12 @@ public class SearchPanel extends JPanel {
     private JButton addButton, editButton, deleteButton;
     private JScrollPane tableScrollPane;
 
+    // private JTextField titleField = new JTextField();
+    // private JTextField authorField = new JTextField();
+    // private JTextField datePublishedField = new JTextField();
+    // private JTextField genreField = new JTextField();
+    // private JTextField worthField = new JTextField();
+
     public SearchPanel(EditBookPanel editBookPanel, JButton addButton, JButton editButton, JButton deleteButton,
             JScrollPane tableScrollPane) {
         this.editBookPanel = editBookPanel;
@@ -74,7 +80,7 @@ public class SearchPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (accountExist(searchField)) {
-                    // Run code here that shows the main Edit Panel
+                    // Run code here that showss the main Edit Panel
                     searchField.setText("");
                     setVisible(false);
                     enableButtons(true);
@@ -143,6 +149,14 @@ public class SearchPanel extends JPanel {
             while (connector.resultSet.next()) {
                 if (connector.resultSet.getString("book id").toString().equals(searchField.getText())) {
                     System.out.println("Account Exists.");
+
+                    editBookPanel.titleField.setText(connector.resultSet.getString("title").toString());
+                    editBookPanel.authorField.setText(connector.resultSet.getString("author").toString());
+                    editBookPanel.genreField.setText(connector.resultSet.getString("genre").toString());
+                    editBookPanel.datePublishedField
+                            .setText(connector.resultSet.getString("date published").toString());
+                    editBookPanel.worthField.setText(connector.resultSet.getString("worth").toString());
+
                     return true;
                 }
             }
