@@ -157,6 +157,13 @@ public class SearchPanel extends JPanel {
                             .setText(connector.resultSet.getString("date published").toString());
                     editBookPanel.worthField.setText(connector.resultSet.getString("worth").toString());
 
+                    if (connector.resultSet.getString("status").toString().equals("active")) {
+                        editBookPanel.activeButton.setBackground(Color.GREEN);
+                        editBookPanel.activeButton.setText("Active");
+                    } else {
+                        editBookPanel.activeButton.setBackground(Color.RED);
+                        editBookPanel.activeButton.setText("Inactive");
+                    }
                     return true;
                 }
             }

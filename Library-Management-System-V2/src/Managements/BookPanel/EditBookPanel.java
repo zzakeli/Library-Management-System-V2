@@ -29,6 +29,7 @@ public class EditBookPanel extends JPanel {
     protected JTextField datePublishedField = new JTextField();
     protected JTextField genreField = new JTextField();
     protected JTextField worthField = new JTextField();
+    protected JButton activeButton = new JButton();
 
     public EditBookPanel(JButton addButton, JButton editButton, JButton deleteButton, DefaultTableModel model,
             JTable bookTable, JScrollPane tableScrollPane) {
@@ -60,7 +61,7 @@ public class EditBookPanel extends JPanel {
         titleField.setFont(new Font("Dialog", Font.PLAIN, 20));
         titleField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         titleField.setBackground(Constants.MAIN_COLOR);
-        titleField.setLocation(29, 60);
+        titleField.setLocation(29, 80);
         titleField.addMouseListener(new FieldListener(titleField));
         add(titleField);
 
@@ -68,7 +69,7 @@ public class EditBookPanel extends JPanel {
         authorField.setFont(new Font("Dialog", Font.PLAIN, 15));
         authorField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         authorField.setBackground(Constants.MAIN_COLOR);
-        authorField.setLocation(29, 140);
+        authorField.setLocation(29, 160);
         authorField.addMouseListener(new FieldListener(authorField));
         add(authorField);
 
@@ -76,7 +77,7 @@ public class EditBookPanel extends JPanel {
         datePublishedField.setFont(new Font("Dialog", Font.PLAIN, 15));
         datePublishedField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         datePublishedField.setBackground(Constants.MAIN_COLOR);
-        datePublishedField.setLocation(249, 140);
+        datePublishedField.setLocation(249, 160);
         datePublishedField.addMouseListener(new FieldListener(datePublishedField));
         add(datePublishedField);
 
@@ -84,7 +85,7 @@ public class EditBookPanel extends JPanel {
         genreField.setFont(new Font("Dialog", Font.PLAIN, 15));
         genreField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         genreField.setBackground(Constants.MAIN_COLOR);
-        genreField.setLocation(29, 230);
+        genreField.setLocation(29, 250);
         genreField.setEnabled(false);
         genreField.setDisabledTextColor(Color.BLACK);
         genreField.addMouseListener(new GenreFieldListener(genreField, this));
@@ -96,21 +97,67 @@ public class EditBookPanel extends JPanel {
         worthField.setFont(new Font("Dialog", Font.PLAIN, 15));
         worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         worthField.setBackground(Constants.MAIN_COLOR);
-        worthField.setLocation(249, 230);
+        worthField.setLocation(249, 250);
         worthField.addMouseListener(new FieldListener(worthField));
         add(worthField);
+
+        activeButton.setSize(100, 40);
+        activeButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        activeButton.setLocation(190, 20);
+        activeButton.setFocusable(false);
+        activeButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        activeButton.addMouseListener(new MouseListener() {
+
+            boolean isClicked = true;
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                isClicked = !isClicked;
+
+                if (isClicked == true) {
+                    activeButton.setBackground(Color.GREEN);
+                    activeButton.setText("Active");
+                }
+                if (isClicked == false) {
+                    activeButton.setBackground(Color.RED);
+                    activeButton.setText("Inactive");
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+        add(activeButton);
 
         JButton saveButton = new JButton("Save");
         saveButton.setBackground(Constants.MAIN_COLOR);
         saveButton.setFont(new Font("Dialog", Font.BOLD, 20));
         saveButton.setSize(160, 50);
-        saveButton.setLocation(159, 310);
+        saveButton.setLocation(159, 330);
         saveButton.setFocusable(false);
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         saveButton.addMouseListener(new SubButtonListener(saveButton));
         saveButton.addActionListener(
                 new SaveEditBookAction(titleField, authorField, datePublishedField, genreField, worthField, this,
-                        addButton, editButton, deleteButton, model, bookTable, scrollPane));
+                        addButton, editButton, deleteButton, model, bookTable, scrollPane, activeButton));
         add(saveButton);
 
         JLabel closeButton = new JLabel();
@@ -164,31 +211,31 @@ public class EditBookPanel extends JPanel {
         JLabel titleLabel = new JLabel("Title");
         titleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
         titleLabel.setSize(100, 30);
-        titleLabel.setLocation(29, 30);
+        titleLabel.setLocation(29, 50);
         add(titleLabel);
 
         JLabel authorLabel = new JLabel("Author");
         authorLabel.setFont(new Font("Dialog", Font.BOLD, 20));
         authorLabel.setSize(100, 30);
-        authorLabel.setLocation(29, 110);
+        authorLabel.setLocation(29, 130);
         add(authorLabel);
 
         JLabel datePublishedLabel = new JLabel("Date Published");
         datePublishedLabel.setFont(new Font("Dialog", Font.BOLD, 20));
         datePublishedLabel.setSize(200, 30);
-        datePublishedLabel.setLocation(249, 110);
+        datePublishedLabel.setLocation(249, 130);
         add(datePublishedLabel);
 
         JLabel genreLabel = new JLabel("Genre");
         genreLabel.setFont(new Font("Dialog", Font.BOLD, 20));
         genreLabel.setSize(200, 30);
-        genreLabel.setLocation(29, 200);
+        genreLabel.setLocation(29, 220);
         add(genreLabel);
 
         JLabel worthLabel = new JLabel("Worth");
         worthLabel.setFont(new Font("Dialog", Font.BOLD, 20));
         worthLabel.setSize(200, 30);
-        worthLabel.setLocation(249, 200);
+        worthLabel.setLocation(249, 220);
         add(worthLabel);
     }
 
@@ -225,7 +272,7 @@ public class EditBookPanel extends JPanel {
             }
 
         });
-        scrollPane.setBounds(29, 269, 200, 150);
+        scrollPane.setBounds(29, 289, 200, 150);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         addGenre(scrollPane, genreField);

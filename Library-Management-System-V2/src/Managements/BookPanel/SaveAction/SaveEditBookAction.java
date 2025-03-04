@@ -18,7 +18,7 @@ import DatabaseConnection.Connector;
 public class SaveEditBookAction implements ActionListener {
     Connector connector = new Connector();
     private JTextField titleField, authorField, datePublishedField, genreField, worthField;
-
+    private JButton activeButton;
     private JPanel editBookPanel;
     private JButton addButton;
     private JButton editButton;
@@ -31,7 +31,8 @@ public class SaveEditBookAction implements ActionListener {
 
     public SaveEditBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
             JTextField genreField, JTextField worthField, JPanel editBookPanel, JButton addButton, JButton editButton,
-            JButton deleteButton, DefaultTableModel model, JTable bookTable, JScrollPane scrollPane) {
+            JButton deleteButton, DefaultTableModel model, JTable bookTable, JScrollPane scrollPane,
+            JButton activeButton) {
         this.titleField = titleField;
         this.authorField = authorField;
         this.datePublishedField = datePublishedField;
@@ -44,6 +45,7 @@ public class SaveEditBookAction implements ActionListener {
         this.model = model;
         this.bookTable = bookTable;
         this.scrollPane = scrollPane;
+        this.activeButton = activeButton;
     }
 
     @Override
@@ -61,8 +63,9 @@ public class SaveEditBookAction implements ActionListener {
         String date = datePublishedField.getText();
         String genre = genreField.getText();
         String worth = worthField.getText();
+        String status = activeButton.getText();
 
-        saveBook(title, author, date, genre, worth);
+        saveBook(title, author, date, genre, worth, status);
         addButton.setEnabled(true);
         editButton.setEnabled(true);
         deleteButton.setEnabled(true);
@@ -244,19 +247,20 @@ public class SaveEditBookAction implements ActionListener {
         worthField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
     }
 
-    private void saveBook(String title, String author, String date, String genre, String worth) {
+    private void saveBook(String title, String author, String date, String genre, String worth, String status) {
         String bookID = getBookID();
         String titleData = getTitle(title);
         String authorData = getAuthor(author);
         String dateData = getDate(date);
         String genreData = getGenre(genre);
         String worthData = getWorth(worth);
+        String statusData = getStatus(status);
 
         try {
             connector.statement = connector.connect().createStatement();
-            connector.query = "INSERT INTO book(book_id,title,author,genre,date_published,worth) VALUES('" + bookID
-                    + "','" + titleData + "','" + authorData + "','" + genreData + "','" + dateData + "'," + worthData
-                    + ")";
+            connector.query = "UPDATE book SET title = '" + titleData
+                    + "', author = '" + authorData + "', genre = '" + genreData + "', date_published = '" + dateData
+                    + "', worth = " + worthData + ", status = '" + statusData + "' WHERE book_id = '" + bookID + "';";
             connector.statement.executeUpdate(connector.query);
             connector.statement.close();
         } catch (SQLException e) {
@@ -363,6 +367,10 @@ public class SaveEditBookAction implements ActionListener {
 
     private String getWorth(String worth) {
         return worth;
+    }
+
+    private String getStatus(String status) {
+        return status;
     }
 
     private enum EndingDay {
