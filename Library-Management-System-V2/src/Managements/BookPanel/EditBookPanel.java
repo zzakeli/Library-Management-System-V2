@@ -58,8 +58,10 @@ public class EditBookPanel extends JPanel {
     }
 
     private void constructPanel() {
-        bookID.setSize(50, 50);
-        bookID.setLocation(0, 0);
+        bookID.setSize(70, 35);
+        bookID.setFont(new Font("Dialog", Font.PLAIN, 20));
+        bookID.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        bookID.setLocation(30, 10);
         add(bookID);
 
         titleField.setSize(420, 40);
