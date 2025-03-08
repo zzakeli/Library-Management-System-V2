@@ -53,14 +53,6 @@ public class Borrower extends JPanel implements Functions {
         deleteBorrower.setEnabled(false);
     }
 
-    @Override
-    public void delete() {
-        deleteBorrowerPanel.setVisible(true);
-        addBorrower.setEnabled(false);
-        editBorrower.setEnabled(false);
-        deleteBorrower.setEnabled(false);
-    }
-
     private void displayLabel() {
         JLabel bookSection = new JLabel("Borrower Section");
         bookSection.setSize(1280, 50);
@@ -108,31 +100,9 @@ public class Borrower extends JPanel implements Functions {
 
         });
         add(editBorrower);
-
-        deleteBorrower.setFocusable(false);
-        deleteBorrower.setFont(Constants.MEM_BUTTON_FONT);
-        deleteBorrower.setForeground(Constants.FORE_COLOR);
-        deleteBorrower.setBackground(Constants.BACK_COLOR);
-        deleteBorrower.setFocusable(false);
-        deleteBorrower.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        deleteBorrower.setSize(180, 70);
-        deleteBorrower.setLocation(490, 30);
-        deleteBorrower.addMouseListener(new ButtonListener(deleteBorrower));
-        deleteBorrower.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                delete();
-            }
-
-        });
-        add(deleteBorrower);
     }
 
     private void displayTable() {
-        // final String[] columnNames = { "Borrower ID", "Title", "Author", "Genre",
-        // "Date Published", "Worth" };
-        // DefaultTableModel model = new DefaultTableModel();
         JTable borrowerTable = new JTable();
 
         borrowerTable.setFocusable(false);

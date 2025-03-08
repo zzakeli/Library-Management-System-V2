@@ -64,12 +64,6 @@ public class Book extends JPanel implements Functions {
         setButtonEnabled(false);
     }
 
-    @Override
-    public void delete() {
-        deleteBookPanel.setVisible(true);
-        setButtonEnabled(false);
-    }
-
     private void setButtonEnabled(boolean isEnabled) {
         addButton.setEnabled(isEnabled);
         editButton.setEnabled(isEnabled);
@@ -123,25 +117,6 @@ public class Book extends JPanel implements Functions {
 
         });
         add(editButton);
-
-        deleteButton.setFocusable(false);
-        deleteButton.setFont(Constants.BUTTON_FONT);
-        deleteButton.setForeground(Constants.FORE_COLOR);
-        deleteButton.setBackground(Constants.BACK_COLOR);
-        deleteButton.setFocusable(false);
-        deleteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        deleteButton.setSize(180, 70);
-        deleteButton.setLocation(490, 30);
-        deleteButton.addMouseListener(new ButtonListener(deleteButton));
-        deleteButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                delete();
-            }
-
-        });
-        add(deleteButton);
     }
 
     private void displayTable() {

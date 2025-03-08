@@ -70,8 +70,8 @@ public class SaveEditBookAction implements ActionListener {
         addButton.setEnabled(true);
         editButton.setEnabled(true);
         deleteButton.setEnabled(true);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         editBookPanel.setVisible(false);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         refresh();
     }

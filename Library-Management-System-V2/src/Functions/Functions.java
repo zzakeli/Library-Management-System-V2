@@ -5,5 +5,5 @@ public interface Functions {
 
     public abstract void edit();
 
-    public abstract void delete();
+    // public abstract void delete();
 }

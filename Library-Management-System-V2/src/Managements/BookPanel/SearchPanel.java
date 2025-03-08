@@ -28,12 +28,6 @@ public class SearchPanel extends JPanel {
     private JButton addButton, editButton, deleteButton;
     private JScrollPane tableScrollPane;
 
-    // private JTextField titleField = new JTextField();
-    // private JTextField authorField = new JTextField();
-    // private JTextField datePublishedField = new JTextField();
-    // private JTextField genreField = new JTextField();
-    // private JTextField worthField = new JTextField();
-
     public SearchPanel(EditBookPanel editBookPanel, JButton addButton, JButton editButton, JButton deleteButton,
             JScrollPane tableScrollPane) {
         this.editBookPanel = editBookPanel;

@@ -164,7 +164,7 @@ public class EditBookPanel extends JPanel {
         saveButton.addMouseListener(new SubButtonListener(saveButton));
         saveButton.addActionListener(
                 new SaveEditBookAction(titleField, authorField, datePublishedField, genreField, worthField, this,
-                        addButton, editButton, deleteButton, model, bookTable, scrollPane, activeButton));
+                        addButton, editButton, deleteButton, model, bookTable, tableScrollPane, activeButton));
         add(saveButton);
 
         JLabel closeButton = new JLabel();
