@@ -14,23 +14,21 @@ public class EditBorrowerPanel extends JPanel {
 
     JButton addButton;
     JButton editButton;
-    JButton deleteButton;
 
-    public EditBorrowerPanel(JButton addButton, JButton editButton, JButton deleteButton) {
+    public EditBorrowerPanel(JButton addButton, JButton editButton) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
         setSize(480, 450);
         setLocation(320, 110);
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        initButtons(addButton, editButton, deleteButton);
+        initButtons(addButton, editButton);
         constructPanel();
     }
 
-    private void initButtons(JButton addButton, JButton editButton, JButton deleteButton) {
+    private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
-        this.deleteButton = deleteButton;
     }
 
     private void constructPanel() {
@@ -55,7 +53,6 @@ public class EditBorrowerPanel extends JPanel {
                 setVisible(false);
                 addButton.setEnabled(true);
                 editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
             }
 
             @Override

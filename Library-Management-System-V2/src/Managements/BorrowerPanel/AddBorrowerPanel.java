@@ -5,32 +5,37 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import Controls.FieldListener.FieldListener;
 import Controls.SubButtonListener.SubButtonListener;
 import Initial.Constants;
+import Managements.BorrowerPanel.SaveAction.SaveAddBorrowerAction;
 
 public class AddBorrowerPanel extends JPanel {
 
     JButton addButton;
     JButton editButton;
-    JButton deleteButton;
 
-    public AddBorrowerPanel(JButton addButton, JButton editButton, JButton deleteButton) {
+    private DefaultTableModel model;
+    private JTable borrowerTable;
+    private JScrollPane tableScrollPane;
+
+    public AddBorrowerPanel(JButton addButton, JButton editButton, DefaultTableModel model, JTable borrowerTable,
+            JScrollPane tableScrollPane) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
         setSize(480, 450);
         setLocation(320, 110);
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        initButtons(addButton, editButton, deleteButton);
+        initButtons(addButton, editButton);
         constructPanel();
     }
 
-    private void initButtons(JButton addButton, JButton editButton, JButton deleteButton) {
+    private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
-        this.deleteButton = deleteButton;
     }
 
     private void constructPanel() {
@@ -55,7 +60,6 @@ public class AddBorrowerPanel extends JPanel {
                 setVisible(false);
                 addButton.setEnabled(true);
                 editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
             }
 
             @Override
@@ -120,6 +124,8 @@ public class AddBorrowerPanel extends JPanel {
         saveButton.setFocusable(false);
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         saveButton.addMouseListener(new SubButtonListener(saveButton));
+        saveButton.addActionListener(new SaveAddBorrowerAction(borrowerField, bookField, startDateField, dueDateField,
+                addButton, editButton, model, borrowerTable, tableScrollPane));
         add(saveButton);
 
         addLabels();

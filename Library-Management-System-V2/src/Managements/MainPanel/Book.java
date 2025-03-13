@@ -30,9 +30,6 @@ public class Book extends JPanel implements Functions {
             scrollPane);
     protected SearchPanel searchPanel = new SearchPanel(editBookPanel, addButton, editButton, scrollPane);
 
-    // REMOVE DELETE FUNCTION -- NO NEED TO ADD SINCE STATUS HANDLES IT
-    protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton);
-
     public Book() {
         setLayout(null);
         setBackground(Constants.MAIN_COLOR);
@@ -43,7 +40,6 @@ public class Book extends JPanel implements Functions {
         add(addBookPanel);
         add(editBookPanel);
         add(searchPanel);
-        add(deleteBookPanel);
 
         displayLabel();
         displayButtons();
