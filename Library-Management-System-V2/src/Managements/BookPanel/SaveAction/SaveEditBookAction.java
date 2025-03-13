@@ -22,7 +22,6 @@ public class SaveEditBookAction implements ActionListener {
     private EditBookPanel editBookPanel;
     private JButton addButton;
     private JButton editButton;
-    private JButton deleteButton;
     private JScrollPane scrollPane;
 
     private final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
@@ -31,8 +30,7 @@ public class SaveEditBookAction implements ActionListener {
 
     public SaveEditBookAction(JTextField titleField, JTextField authorField, JTextField datePublishedField,
             JTextField genreField, JTextField worthField, EditBookPanel editBookPanel, JButton addButton,
-            JButton editButton,
-            JButton deleteButton, DefaultTableModel model, JTable bookTable, JScrollPane scrollPane,
+            JButton editButton, DefaultTableModel model, JTable bookTable, JScrollPane scrollPane,
             JButton activeButton) {
         this.titleField = titleField;
         this.authorField = authorField;
@@ -42,7 +40,6 @@ public class SaveEditBookAction implements ActionListener {
         this.editBookPanel = editBookPanel;
         this.addButton = addButton;
         this.editButton = editButton;
-        this.deleteButton = deleteButton;
         this.model = model;
         this.bookTable = bookTable;
         this.scrollPane = scrollPane;
@@ -69,7 +66,6 @@ public class SaveEditBookAction implements ActionListener {
         saveBook(title, author, date, genre, worth, status);
         addButton.setEnabled(true);
         editButton.setEnabled(true);
-        deleteButton.setEnabled(true);
         editBookPanel.setVisible(false);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 

@@ -19,21 +19,19 @@ public class Book extends JPanel implements Functions {
 
     private JButton addButton = new JButton("ADD BOOK");
     private JButton editButton = new JButton("EDIT BOOK");
-    private JButton deleteButton = new JButton("DELETE BOOK");
 
     private final String[] columnNames = { "Book ID", "Title", "Author", "Genre", "Date Published", "Worth" };
     private DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
     private JTable bookTable = new JTable(model);
     private JScrollPane scrollPane = new JScrollPane(bookTable);
 
-    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, deleteButton, model, bookTable,
+    protected AddBookPanel addBookPanel = new AddBookPanel(addButton, editButton, model, bookTable, scrollPane);
+    protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, model, bookTable,
             scrollPane);
-    protected EditBookPanel editBookPanel = new EditBookPanel(addButton, editButton, deleteButton, model, bookTable,
-            scrollPane);
-    protected SearchPanel searchPanel = new SearchPanel(editBookPanel, addButton, editButton, deleteButton, scrollPane);
+    protected SearchPanel searchPanel = new SearchPanel(editBookPanel, addButton, editButton, scrollPane);
 
     // REMOVE DELETE FUNCTION -- NO NEED TO ADD SINCE STATUS HANDLES IT
-    protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton, deleteButton);
+    protected DeleteBookPanel deleteBookPanel = new DeleteBookPanel(addButton, editButton);
 
     public Book() {
         setLayout(null);
@@ -67,7 +65,6 @@ public class Book extends JPanel implements Functions {
     private void setButtonEnabled(boolean isEnabled) {
         addButton.setEnabled(isEnabled);
         editButton.setEnabled(isEnabled);
-        deleteButton.setEnabled(isEnabled);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     }
 

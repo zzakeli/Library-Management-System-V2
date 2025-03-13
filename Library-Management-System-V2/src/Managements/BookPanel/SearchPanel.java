@@ -25,10 +25,10 @@ public class SearchPanel extends JPanel {
     private Connector connector = new Connector();
 
     private EditBookPanel editBookPanel;
-    private JButton addButton, editButton, deleteButton;
+    private JButton addButton, editButton;
     private JScrollPane tableScrollPane;
 
-    public SearchPanel(EditBookPanel editBookPanel, JButton addButton, JButton editButton, JButton deleteButton,
+    public SearchPanel(EditBookPanel editBookPanel, JButton addButton, JButton editButton,
             JScrollPane tableScrollPane) {
         this.editBookPanel = editBookPanel;
         this.tableScrollPane = tableScrollPane;
@@ -39,19 +39,17 @@ public class SearchPanel extends JPanel {
         setLocation(420, 240);
         setVisible(false);
         initComps();
-        initButtons(addButton, editButton, deleteButton);
+        initButtons(addButton, editButton);
     }
 
-    private void initButtons(JButton addButton, JButton editButton, JButton deleteButton) {
+    private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
-        this.deleteButton = deleteButton;
     }
 
     private void enableButtons(boolean isEnabled) {
         addButton.setEnabled(isEnabled);
         editButton.setEnabled(isEnabled);
-        deleteButton.setEnabled(isEnabled);
     }
 
     private void initComps() {
@@ -78,7 +76,7 @@ public class SearchPanel extends JPanel {
                     editBookPanel.bookID.setText(searchField.getText());
                     searchField.setText("");
                     setVisible(false);
-                    enableButtons(true);
+                    enableButtons(false);
                     editBookPanel.setVisible(true);
                     return;
                 }
@@ -108,7 +106,6 @@ public class SearchPanel extends JPanel {
                 setVisible(false);
                 addButton.setEnabled(true);
                 editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
                 tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
                 searchField.setText("");
 

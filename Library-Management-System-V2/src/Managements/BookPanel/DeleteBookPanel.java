@@ -13,23 +13,21 @@ public class DeleteBookPanel extends JPanel {
 
     JButton addButton;
     JButton editButton;
-    JButton deleteButton;
 
-    public DeleteBookPanel(JButton addButton, JButton editButton, JButton deleteButton) {
+    public DeleteBookPanel(JButton addButton, JButton editButton) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
         setSize(480, 450);
         setLocation(320, 110);
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        initButtons(addButton, editButton, deleteButton);
+        initButtons(addButton, editButton);
         constructPanel();
     }
 
-    private void initButtons(JButton addButton, JButton editButton, JButton deleteButton) {
+    private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
-        this.deleteButton = deleteButton;
     }
 
     private void constructPanel() {
@@ -46,30 +44,29 @@ public class DeleteBookPanel extends JPanel {
         closeButton.addMouseListener(new MouseListener() {
 
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
             }
 
             @Override
-            public void mousePressed(java.awt.event.MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 setVisible(false);
                 addButton.setEnabled(true);
                 editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
             }
 
             @Override
-            public void mouseReleased(java.awt.event.MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
 
             }
 

@@ -17,7 +17,6 @@ public class AddBookPanel extends JPanel {
 
     private JButton addButton;
     private JButton editButton;
-    private JButton deleteButton;
     private JScrollPane tableScrollPane;
     private JPanel selection = new JPanel();
     private JScrollPane scrollPane = new JScrollPane(selection);
@@ -25,7 +24,7 @@ public class AddBookPanel extends JPanel {
     private DefaultTableModel model;
     private JTable bookTable;
 
-    public AddBookPanel(JButton addButton, JButton editButton, JButton deleteButton, DefaultTableModel model,
+    public AddBookPanel(JButton addButton, JButton editButton, DefaultTableModel model,
             JTable bookTable, JScrollPane tableScrollPane) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
@@ -33,15 +32,14 @@ public class AddBookPanel extends JPanel {
         setLocation(320, 110);
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        initButtons(addButton, editButton, deleteButton);
+        initButtons(addButton, editButton);
         initTable(model, bookTable, tableScrollPane);
         constructPanel();
     }
 
-    private void initButtons(JButton addButton, JButton editButton, JButton deleteButton) {
+    private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
-        this.deleteButton = deleteButton;
     }
 
     private void initTable(DefaultTableModel model, JTable bookTable, JScrollPane tableScrollPane) {
@@ -112,7 +110,7 @@ public class AddBookPanel extends JPanel {
         saveButton.addMouseListener(new SubButtonListener(saveButton));
         saveButton.addActionListener(
                 new SaveAddBookAction(titleField, authorField, datePublishedField, genreField, worthField, this,
-                        addButton, editButton, deleteButton, model, bookTable, tableScrollPane));
+                        addButton, editButton, model, bookTable, tableScrollPane));
         add(saveButton);
 
         JLabel closeButton = new JLabel();
@@ -136,7 +134,6 @@ public class AddBookPanel extends JPanel {
                 setVisible(false);
                 addButton.setEnabled(true);
                 editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
                 tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
                 setDefault(titleField, authorField, datePublishedField, genreField,
                         worthField);
