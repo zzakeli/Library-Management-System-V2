@@ -125,7 +125,7 @@ public class AddBorrowerPanel extends JPanel {
         saveButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         saveButton.addMouseListener(new SubButtonListener(saveButton));
         saveButton.addActionListener(new SaveAddBorrowerAction(borrowerField, bookField, startDateField, dueDateField,
-                addButton, editButton, model, borrowerTable, tableScrollPane));
+                addButton, editButton, model, borrowerTable, tableScrollPane, this));
         add(saveButton);
 
         addLabels();
