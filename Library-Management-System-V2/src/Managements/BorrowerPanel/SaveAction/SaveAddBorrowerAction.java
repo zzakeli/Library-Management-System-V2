@@ -38,6 +38,10 @@ public class SaveAddBorrowerAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        save();
+    }
+
+    public void save() {
 
     }
 
