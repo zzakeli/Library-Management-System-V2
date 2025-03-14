@@ -331,6 +331,7 @@ public class SaveAddBorrowerAction implements ActionListener {
                 i++;
             }
         }
+        
 
         borrower = authorSB.toString();
 
