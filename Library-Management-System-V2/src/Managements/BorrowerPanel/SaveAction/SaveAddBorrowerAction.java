@@ -129,6 +129,7 @@ public class SaveAddBorrowerAction implements ActionListener {
     private boolean hasValidFields() {
         setDefault();
         JTextField[] fields = { borrowerField, bookField, startDateField, dueDateField };
+        JTextField[] dateFields = { startDateField, dueDateField };
         boolean isValid = true;
 
         for (int i = 0; i < fields.length; i++) {
@@ -138,28 +139,30 @@ public class SaveAddBorrowerAction implements ActionListener {
         }
 
         final int dateLength = 10;
-        if (startDateField.getText().length() != dateLength || startDateField.getText().charAt(4) != '-'
-                || startDateField.getText().charAt(7) != '-') {
-            isValid = changeBorderRed(startDateField);
+        for (int i = 0; i < dateFields.length; i++) {
+            if (dateFields[i].getText().length() != dateLength || dateFields[i].getText().charAt(4) != '-'
+                    || dateFields[i].getText().charAt(7) != '-') {
+                isValid = changeBorderRed(dateFields[i]);
 
-            StringBuilder dateBuilder = new StringBuilder();
-            dateBuilder.setLength(0);
-            startDateField.getText().trim();
-            dateBuilder.append(startDateField.getText());
-            for (int i = 0; i < startDateField.getText().length(); i++) {
-                dateBuilder.append(" ");
+                StringBuilder dateBuilder = new StringBuilder();
+                dateBuilder.setLength(0);
+                dateFields[i].getText().trim();
+                dateBuilder.append(dateFields[i].getText());
+                for (int j = 0; j < dateFields[i].getText().length(); j++) {
+                    dateBuilder.append(" ");
+                }
+                dateFields[i].setText(dateBuilder.toString());
             }
-            startDateField.setText(dateBuilder.toString());
-        }
 
-        for (int i = 0; i < startDateField.getText().length(); i++) {
-            // 0-4,5-7,8-10
-            if (i == 4 || i == 7)
-                continue;
+            for (int j = 0; i < dateFields[i].getText().length(); j++) {
+                // 0-4,5-7,8-10
+                if (j == 4 || j == 7)
+                    continue;
 
-            if (!Character.isDigit(startDateField.getText().charAt(i))) {
-                isValid = changeBorderRed(startDateField);
-                break;
+                if (!Character.isDigit(dateFields[i].getText().charAt(j))) {
+                    isValid = changeBorderRed(dateFields[i]);
+                    break;
+                }
             }
         }
 
@@ -176,41 +179,47 @@ public class SaveAddBorrowerAction implements ActionListener {
             isValid = changeBorderRed(startDateField);
             return isValid;
         }
+        if (dueDateField.getText().equals("")) {
+            isValid = changeBorderRed(dueDateField);
+            return isValid;
+        }
 
-        if (Character.isDigit(startDateField.getText().charAt(5))
-                && Character.isDigit(startDateField.getText().charAt(6))) {
-            EndingDay endingDay = EndingDay.THIRTY_ONE;
-            int month = Integer.parseInt(startDateField.getText().substring(5, 7));
+        for (int i = 0; i < dateFields.length; i++) {
+            if (Character.isDigit(dateFields[i].getText().charAt(5))
+                    && Character.isDigit(dateFields[i].getText().charAt(6))) {
+                EndingDay endingDay = EndingDay.THIRTY_ONE;
+                int month = Integer.parseInt(dateFields[i].getText().substring(5, 7));
 
-            if (month < 1 || month > 12) {
-                isValid = changeBorderRed(startDateField);
-            }
-
-            if (Character.isDigit(startDateField.getText().charAt(8))
-                    && Character.isDigit(startDateField.getText().charAt(9))) {
-                int day = Integer.parseInt(startDateField.getText().substring(8, 10));
-
-                switch (month) {
-                    case 1, 3, 5, 7, 8, 10, 12 -> {
-                        endingDay = EndingDay.THIRTY_ONE;
-                        break;
-                    }
-                    case 4, 6, 9, 11 -> {
-                        endingDay = EndingDay.THIRTY;
-                        break;
-                    }
-                    case 2 -> {
-                        endingDay = EndingDay.TWENTY_EIGHT;
-                        break;
-                    }
-                    default -> {
-                        isValid = changeBorderRed(startDateField);
-                        break;
-                    }
+                if (month < 1 || month > 12) {
+                    isValid = changeBorderRed(dateFields[i]);
                 }
 
-                if (day > endingDay.getDay() || day < 1) {
-                    isValid = changeBorderRed(startDateField);
+                if (Character.isDigit(dateFields[i].getText().charAt(8))
+                        && Character.isDigit(dateFields[i].getText().charAt(9))) {
+                    int day = Integer.parseInt(dateFields[i].getText().substring(8, 10));
+
+                    switch (month) {
+                        case 1, 3, 5, 7, 8, 10, 12 -> {
+                            endingDay = EndingDay.THIRTY_ONE;
+                            break;
+                        }
+                        case 4, 6, 9, 11 -> {
+                            endingDay = EndingDay.THIRTY;
+                            break;
+                        }
+                        case 2 -> {
+                            endingDay = EndingDay.TWENTY_EIGHT;
+                            break;
+                        }
+                        default -> {
+                            isValid = changeBorderRed(dateFields[i]);
+                            break;
+                        }
+                    }
+
+                    if (day > endingDay.getDay() || day < 1) {
+                        isValid = changeBorderRed(dateFields[i]);
+                    }
                 }
             }
         }
@@ -331,7 +340,6 @@ public class SaveAddBorrowerAction implements ActionListener {
                 i++;
             }
         }
-        
 
         borrower = authorSB.toString();
 
