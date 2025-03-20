@@ -14,8 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import DatabaseConnection.Connector;
-import Managements.BookPanel.AddBookPanel;
-import Managements.BorrowerPanel.AddBorrowerPanel;
 
 public class SaveAddBorrowerAction implements ActionListener {
 
@@ -129,7 +127,7 @@ public class SaveAddBorrowerAction implements ActionListener {
     private boolean hasValidFields() {
         setDefault();
         JTextField[] fields = { borrowerField, bookField, startDateField, dueDateField };
-        JTextField[] dateFields = { startDateField, dueDateField };
+        JTextField[] dateFields = { this.startDateField, this.dueDateField };
         boolean isValid = true;
 
         for (int i = 0; i < fields.length; i++) {
@@ -154,13 +152,14 @@ public class SaveAddBorrowerAction implements ActionListener {
                 dateFields[i].setText(dateBuilder.toString());
             }
 
-            for (int j = 0; i < dateFields[i].getText().length(); j++) {
+            for (int j = 0; j < dateFields[i].getText().length(); j++) {
                 // 0-4,5-7,8-10
                 if (j == 4 || j == 7)
                     continue;
 
                 if (!Character.isDigit(dateFields[i].getText().charAt(j))) {
                     isValid = changeBorderRed(dateFields[i]);
+
                     break;
                 }
             }
