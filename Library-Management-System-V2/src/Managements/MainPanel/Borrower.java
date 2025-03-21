@@ -15,11 +15,10 @@ import Managements.BorrowerPanel.*;
 
 public class Borrower extends JPanel implements Functions {
 
-    Connector connector = new Connector();
+    protected Connector connector = new Connector();
 
     protected JButton addBorrower = new JButton("ADD BORROWER");
     protected JButton editBorrower = new JButton("EDIT BORROWER");
-    protected JButton deleteBorrower = new JButton("DELETE BORROWER");
 
     private final String[] columnNames = { "Borrower ID", "Borrower Name", "Title", "Start Date", "Due Date" };
     private DefaultTableModel model = new DefaultTableModel(dataTable(columnNames), columnNames);
@@ -50,7 +49,6 @@ public class Borrower extends JPanel implements Functions {
         addBorrowerPanel.setVisible(true);
         addBorrower.setEnabled(false);
         editBorrower.setEnabled(false);
-        deleteBorrower.setEnabled(false);
     }
 
     @Override
@@ -58,7 +56,6 @@ public class Borrower extends JPanel implements Functions {
         editBorrowerPanel.setVisible(true);
         addBorrower.setEnabled(false);
         editBorrower.setEnabled(false);
-        deleteBorrower.setEnabled(false);
     }
 
     private void displayLabel() {

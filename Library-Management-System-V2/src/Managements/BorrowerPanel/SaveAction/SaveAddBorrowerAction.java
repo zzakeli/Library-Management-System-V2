@@ -19,30 +19,43 @@ public class SaveAddBorrowerAction implements ActionListener {
 
     Connector connector = new Connector();
 
-    private JTextField borrowerField;
-    private JTextField bookField;
-    private JTextField startDateField;
-    private JTextField dueDateField;
+    private JTextField borrowerField, bookField, startDateField, dueDateField;
+
+    private JPanel addBorrowerPanel;
     private JButton addButton;
     private JButton editButton;
-    private DefaultTableModel model;
-    private final String[] columnNames = { "Borrower ID", "Borrower Name", "Title", "Start Date", "Due Date" };
-    private JTable borrowerTable;
     private JScrollPane tableScrollPane;
-    private JPanel addBorrowerPanel;
+
+    private final String[] columnNames = { "Borrower ID", "Borrower Name", "Title", "Start Date", "Due Date" };
+    private DefaultTableModel model;
+    private JTable borrowerTable;
 
     public SaveAddBorrowerAction(JTextField borrowerField, JTextField bookField, JTextField startDateField,
             JTextField dueDateField,
             JButton addButton, JButton editButton, DefaultTableModel model, JTable borrowerTable,
             JScrollPane tableScrollPane, JPanel addBorrowerPanel) {
+        this.addBorrowerPanel = addBorrowerPanel;
+        initFields(borrowerField, bookField, startDateField, dueDateField);
+        initButtons(addButton, editButton);
+        initTable(borrowerTable, model, tableScrollPane);
+    }
+
+    private void initFields(JTextField borrowerField, JTextField bookField, JTextField startDateField,
+            JTextField dueDateField) {
         this.borrowerField = borrowerField;
         this.bookField = bookField;
         this.startDateField = startDateField;
         this.dueDateField = dueDateField;
+    }
+
+    private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
-        this.model = model;
+    }
+
+    private void initTable(JTable borrowerTable, DefaultTableModel model, JScrollPane tableScrollPane) {
         this.borrowerTable = borrowerTable;
+        this.model = model;
         this.tableScrollPane = tableScrollPane;
     }
 
@@ -67,12 +80,20 @@ public class SaveAddBorrowerAction implements ActionListener {
         tableScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         addBorrowerPanel.setVisible(false);
 
+        clearState();
         refresh();
     }
 
     private void refresh() {
         model = new DefaultTableModel(dataTable(columnNames), columnNames);
         borrowerTable.setModel(model);
+    }
+
+    private void clearState() {
+        borrowerField.setText("");
+        bookField.setText("");
+        startDateField.setText("");
+        dueDateField.setText("");
     }
 
     private String[][] dataTable(String[] columnNames) {
@@ -240,8 +261,8 @@ public class SaveAddBorrowerAction implements ActionListener {
 
     private void saveBorrower(String borrower, String book, String startDate, String dueDate) {
         String borrowerID = getBorrowerID();
-        String bookData = getBook(book);
         String borrowerData = getBorrower(borrower);
+        String bookData = getBook(book);
         String startDateData = getStartDate(startDate);
         String dueDateData = getDueDate(dueDate);
 
@@ -249,7 +270,7 @@ public class SaveAddBorrowerAction implements ActionListener {
             connector.statement = connector.connect().createStatement();
             connector.query = "INSERT INTO borrower(borrower_id,borrower_name,book_title,start_date,due_date) VALUES('"
                     + borrowerID
-                    + "','" + bookData + "','" + borrowerData + "','" + dueDateData + "','" + startDateData + "')";
+                    + "','" + borrowerData + "','" + bookData + "','" + dueDateData + "','" + startDateData + "')";
             connector.statement.executeUpdate(connector.query);
             connector.statement.close();
         } catch (SQLException e) {
@@ -259,20 +280,20 @@ public class SaveAddBorrowerAction implements ActionListener {
     }
 
     private String getBorrowerID() {
-        String bookID = null;
+        String borrowerID = null;
         StringBuilder createID = new StringBuilder("W");
         try {
             connector.statement = connector.connect().createStatement();
             connector.query = "SELECT COUNT(borrower_id) AS borrowerID FROM borrower;";
             connector.resultSet = connector.statement.executeQuery(connector.query);
 
-            int bookNum = 0;
+            int borrowerNum = 0;
             while (connector.resultSet.next()) {
-                bookNum = Integer.parseInt(connector.resultSet.getString("borrowerID").toString());
+                borrowerNum = Integer.parseInt(connector.resultSet.getString("borrowerID").toString());
             }
-            bookNum++;
+            borrowerNum++;
 
-            switch (Integer.toString(bookNum).length()) {
+            switch (Integer.toString(borrowerNum).length()) {
                 case 1:
                     createID.append("000");
                     break;
@@ -285,13 +306,13 @@ public class SaveAddBorrowerAction implements ActionListener {
                 default:
                     break;
             }
-            createID.append(Integer.toString(bookNum));
-            bookID = createID.toString();
+            createID.append(Integer.toString(borrowerNum));
+            borrowerID = createID.toString();
 
             connector.statement.close();
             connector.resultSet.close();
 
-            return bookID;
+            return borrowerID;
         } catch (SQLException e) {
             e.printStackTrace();
         }

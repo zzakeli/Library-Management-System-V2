@@ -30,8 +30,8 @@ public class AddBorrowerPanel extends JPanel {
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
         initButtons(addButton, editButton);
-        constructPanel();
         initTable(model, borrowerTable, tableScrollPane);
+        constructPanel();
     }
 
     private void initTable(DefaultTableModel model, JTable borrowerTable, JScrollPane tableScrollPane) {

@@ -66,12 +66,21 @@ public class SaveAddBookAction implements ActionListener {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         addBookPanel.setVisible(false);
 
+        clearState();
         refresh();
     }
 
     private void refresh() {
         model = new DefaultTableModel(dataTable(columnNames), columnNames);
         bookTable.setModel(model);
+    }
+
+    private void clearState() {
+        titleField.setText("");
+        authorField.setText("");
+        datePublishedField.setText("");
+        genreField.setText("");
+        worthField.setText("");
     }
 
     private String[][] dataTable(String[] columnNames) {
