@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import Controls.FieldListener.FieldListener;
 import Controls.SubButtonListener.SubButtonListener;
@@ -12,10 +13,15 @@ import Initial.Constants;
 
 public class EditBorrowerPanel extends JPanel {
 
-    JButton addButton;
-    JButton editButton;
+    private JButton addButton;
+    private JButton editButton;
 
-    public EditBorrowerPanel(JButton addButton, JButton editButton) {
+    private DefaultTableModel model;
+    private JTable borrowerTable;
+    private JScrollPane tableScrollPane;
+
+    public EditBorrowerPanel(JButton addButton, JButton editButton, DefaultTableModel model, JTable borrowerTable,
+            JScrollPane tableScrollPane) {
         setLayout(null);
         setBackground(Constants.BACK_COLOR);
         setSize(480, 450);
@@ -23,12 +29,20 @@ public class EditBorrowerPanel extends JPanel {
         setVisible(false);
         setBorder(BorderFactory.createLineBorder(Color.black, 3));
         initButtons(addButton, editButton);
+        initTable(model, borrowerTable, tableScrollPane);
         constructPanel();
     }
 
     private void initButtons(JButton addButton, JButton editButton) {
         this.addButton = addButton;
         this.editButton = editButton;
+    }
+
+    private void initTable(DefaultTableModel model, JTable borrowerTable,
+            JScrollPane tableScrollPane) {
+        this.model = model;
+        this.borrowerTable = borrowerTable;
+        this.tableScrollPane = tableScrollPane;
     }
 
     private void constructPanel() {

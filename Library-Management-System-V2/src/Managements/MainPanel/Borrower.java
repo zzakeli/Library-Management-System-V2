@@ -27,7 +27,8 @@ public class Borrower extends JPanel implements Functions {
 
     protected AddBorrowerPanel addBorrowerPanel = new AddBorrowerPanel(addBorrower, editBorrower, model, borrowerTable,
             tableScrollPane);
-    protected EditBorrowerPanel editBorrowerPanel = new EditBorrowerPanel(addBorrower, editBorrower);
+    protected EditBorrowerPanel editBorrowerPanel = new EditBorrowerPanel(addBorrower, editBorrower, model,
+            borrowerTable, tableScrollPane);
 
     public Borrower() {
         setLayout(null);
